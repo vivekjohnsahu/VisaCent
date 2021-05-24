@@ -1,0 +1,36 @@
+.borderColor{
+    border: 1px solid red;
+}
+
+.phone_dropdown
+{
+    position: relative;
+}
+.phone_dropdown select
+{
+    position: absolute;
+    width:64px;top:0px;left:0px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.phone_dropdown input[type="number"]
+{
+    padding-left:74px;
+}
+.contact .label_container
+{
+    margin-bottom:4px;
+    text-align: left;
+}
+.contact .element_container
+{
+    margin-bottom:20px;
+}
+.contact .element_container textarea
+{
+    margin-bottom:0px;
+}
+#flagVle *
+{
+    padding-left: 10px;
+}

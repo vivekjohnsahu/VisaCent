@@ -1,0 +1,357 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+             [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'"
+             [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+<div *ngIf="pade_error_show" class="datafound">Oops! The Page you requested was not found!</div>
+<section id="emb_sec1" style="padding: 0px;display: none;">
+    <section class="section_20" style="background-color: #EDEFF1;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        <h1>{{name}}, {{in_cntname}}</h1>
+                        <div class="hr_line"></div>
+                        <p class="discription"><strong>{{name}}</strong> is an bridge of communication between {{of_cntname}} Government and {{in_cntname}}. It operates as the official representative of the {{name}} in {{in_cntname}}.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <aside class="text-center" class="arr_d"><img src="assets/images/arrow_dwn.png" style="width:60px;"/></aside>
+    <section class="section_20" style="padding-top:0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-4 col-xs-offset-2 col-md-offset-3 col-sm-offset-3">
+                            <aside class="flag_aside">
+                                <a routerLink="/embassy-and-consulate-of/{{in_country_slug_name}}" title="{{in_cntname}}">
+                                    <img [src]="in_coutnry_flag" style="cursor: pointer;" alt="{{in_cntname}}"  class="img-responsive f_flag wow bounce animated zoom" data-wow-duration="4s" data-wow-delay="1s" />
+                                </a>
+                            </aside>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-4">
+                            <aside class="flag_aside">
+                                <a routerLink="/embassy-and-consulate-of/{{of_country_slug_name}}" title="{{of_cntname}}">
+                                    <img [src]="of_coutnry_flag" style="cursor: pointer;" alt="{{of_cntname}}" class="img-responsive wow bounce animated zoom" data-wow-duration="4s" data-wow-delay="1s" />
+                                </a>
+                            </aside>
+                        </div>
+                    </div>
+                    <div class="row emb_row">
+                        <div id="emb_block">
+                            <div style="border-left:none;" >
+                                <article class="my_art">
+                                    <div>
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                    </div>
+                                    <aside>
+                                        <p><strong>Address:</strong><br>
+                                            <span [innerHTML]="addressTag"></span>
+                                        </p>
+                                    </aside>
+                                </article>
+                            </div>
+                            <div>
+                                <article class="my_art">
+                                    <div>
+                                        <span><a title="Phone"><i class="fas fa-phone"></i></a></span>
+                                    </div>
+                                    <aside>
+                                        <p>
+                                            <strong>Phone: </strong>
+                                            <span *ngIf="phone!=0">
+                                            <a  href="tel:+{{port}}" *ngFor="let port of phone"><span [innerHTML]="port"></span><br></a>
+                                            </span>
+                                            <span *ngIf="phone==0">
+                                            <span>NA</span>
+                                            </span>   
+                                            <br><strong>Fax: </strong>
+                                            <span *ngIf="fax!=0">
+                                            <a  href="tel:+{{port}}" *ngFor="let port of fax"><span [innerHTML]="port"></span><br></a>
+                                            </span>
+                                            <span *ngIf="fax==0">
+                                            <span>NA</span>
+                                            </span>
+                                        </p>
+                                    </aside>
+                                </article>
+                            </div>
+                            <div style="border-right:none;">
+                                <article class="my_art">
+                                    <div>
+                                        <span><a title="Email"><i class="far fa-envelope"></i></a></span>
+                                    </div>
+                                    <aside>
+                                        <p>
+                                            <strong>Email: </strong>
+                                            <span *ngIf="emai!=0">
+                                            <a href="mailto:{{port}}" *ngFor="let port of email"><span [innerHTML]="port"></span><br></a>
+                                            </span>
+                                            <span *ngIf="emai==0">
+                                            <span>NA</span>
+                                            </span>   
+                                            <br><strong>Website: </strong> 
+                                            <span *ngIf="website!=0">
+                                            <a href="http://{{port}}" *ngFor="let port of website" target="_blank"><span [innerHTML]="port"></span></a>
+                                            </span>
+                                            <span *ngIf="website==0">
+                                            <span>NA</span>
+                                            </span>
+                                        </p>
+                                    </aside>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="map detail_map">
+                                <!-- "https://www.google.com/maps/embed/v1/place?key=AIzaSyDhk_FjlzJ5Gn6JqJ9np-Z0XY-WBwDoogU&q=Space+Needle,Seattle+WA" -->
+                                <iframe width="100%" height="300" style="height: 300px!important;" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.it/maps?key=AIzaSyDhk_FjlzJ5Gn6JqJ9np-Z0XY-WBwDoogU&q=5%2C+Liang+Ma+Qiao+Bei+Jie+Chaoyang+District+Beijing+China&output=embed"></iframe>
+                            </div>
+                            <p ><span style="color:red;">*</span> It might case this information is no longer correct, please help us to<a title="Update Information" id="rep_pop" (click)="popup_Hide_msg()">&nbsp;Update Embassy Information.
+                                </a> 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <P style="margin-bottom: 0px;">
+                                The purpose of your intended travel (Tourist, Business, Studies or etc) and other facts will determine what type of visa is required under {{of_cntname}} immigration law. As a visa applicant, you will need to establish that you meet all requirements to receive the category of visa for which you are applying.
+                            </P>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="sidebar">
+                            <h3><a style="font-size: 20px;" routerLink="/apply-visa/{{of_country_slug_name}}">Apply for {{of_cntname}} Visa</a></h3>
+                            <p>We provides expedited processing and guidance for <strong>{{of_cntname}}</strong>  visa application</p>
+                            <div>
+                                <!-- <a  routerLink="/apply-e-visa/{{of_cntname_lower}}">Apply for {{of_cntname}} Visa</a><br /> -->
+                                <a  routerLink="/home" (click)="most_popular()">Most Popular Visas</a><br />
+                                <a  routerLink="/embassy-and-consulate-of/{{in_country_slug_name}}">Embassies of {{in_cntname}}</a><br />
+                                <a  routerLink="/embassy-and-consulate-in/{{in_country_slug_name}}">Embassies in {{in_cntname}}</a><br />
+                                <a  routerLink="/embassy-and-consulate-of/{{of_country_slug_name}}">Embassies of {{of_cntname}}</a><br />
+                                <a  routerLink="/embassy-and-consulate-in/{{of_country_slug_name}}">Embassies in {{of_cntname}}</a><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="suggested_emb section_10" *ngIf="multiCountry.length > 0">
+        <div class="container">
+            <h3>{{of_cntname}} other Embassies, Consulates and representations in {{in_cntname}}</h3>
+            <p>Along with the {{name}}, {{of_cntname}} also has&nbsp; {{multiCountry.length}}&nbsp; other representations in {{in_cntname}} as:</p>
+        </div>
+    </section>
+    <div class="my">
+        <section *ngFor="let multi of multiCountry; let i = index;">
+            <div id="embassy_flex_cont">
+                <div>
+                    <article class="embassy_info_left">
+                        <div class="info_div">
+                            <div class="city_name" (click)="topData(i)">
+                                <h3><a routerLink="/embassy/{{multi.slug_name}}">{{multi.name}} {{in_cntname}}</a></h3>
+                            </div>
+                            <h3><span>Address: </span></h3>
+                            <p style="margin-bottom:6px;" [innerHTML]="multi.Address"></p>
+                            <p style="margin-bottom:6px;">
+                                <strong>Phone: </strong>
+                                <span *ngIf="multi.lnthTelepone!=0">
+                                <a  href="tel:+{{portOne}}" *ngFor="let portOne of multi.phoneM1"><span [innerHTML]="portOne"></span><br></a>
+                                </span>
+                                <span *ngIf="multi.lnthTelepone==0">
+                                <span>NA</span>
+                                </span>
+                            <p style="margin-bottom:6px;">
+                                <strong>Fax: </strong> 
+                                <span *ngIf="multi.lnthFax!=0">
+                                <a  href="tel:+{{portOne}}" *ngFor="let portOne of multi.faxMultiM1"><span [innerHTML]="portOne"></span><br></a>
+                                </span>
+                                <span *ngIf="multi.lnthFax==0">
+                                <span>NA</span>
+                                </span>
+                            </p>
+                            <p style="margin-bottom:6px;">
+                                <strong>Email: </strong>
+                                <span *ngIf="multi.lnth!=0">
+                                <a href="mailto:{{portOne}}" *ngFor="let portOne of multi.emaiM1"><span [innerHTML]="portOne"></span><br></a>
+                                </span>
+                                <span *ngIf="multi.lnth==0">
+                                <span>NA</span>
+                                </span>
+                            </p>
+                            <p style="margin-bottom:6px;">
+                                <strong>Website: </strong>
+                                <span *ngIf="multi.lnthwebsite!=0">
+                                <a href="http://{{portOne}}" *ngFor="let portOne of multi.websiteM1" target="_blank"><span [innerHTML]="portOne"></span><br></a>
+                                </span>
+                                <span *ngIf="multi.lnthwebsite==0">
+                                <span>NA</span>
+                                </span>
+                            </p>
+                        </div>
+                    </article>
+                </div>
+                <div class="emb_location_div" >
+                    <div class="map">
+                        <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.it/maps?key=AIzaSyDhk_FjlzJ5Gn6JqJ9np-Z0XY-WBwDoogU&q=5%2C+Liang+Ma+Qiao+Bei+Jie+Chaoyang+District+Beijing+China&output=embed"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <span id="text_test"></span>
+    </div>
+    <hr style="opacity: 1; margin-top: 0px; margin-bottom: 0px; background: #dadada; height: 1px; width: 100%; border: none;" />
+    <!-- start popup  -->
+    <!----------------------- start popup -------------------->
+    <div id="report_popup">
+        <div class="report_container">
+            <div class="trigger_div"><i class="fas fa-times" id="trigger1"></i></div>
+            <div class="content_div">
+                <form class="report_form" name="popupName" style="position:relative;"> 
+                    <div id="myalert" class="my_alert my_alert_pos" *ngIf="success_msg_error">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <span class="sus">{{success_msg}}</span>
+                    </div>
+                    <h3>Update Your Information</h3>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="label_container" style="line-height: normal;">
+                                <label>address</label>
+                                <div id="textarea" class="textareaaddress enable_white" contenteditable [innerHTML]='address1' (keyup)='ErrorRermove()'></div>
+                                <!-- <div id="textarea" ></div> -->
+                                <!-- <textarea [innerHTML]='address1' style="margin-bottom: 0px;"  name="newAddress" ></textarea> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>telephone</label>
+                                <div id="textareaPhone1" class="textarea enable_white" contenteditable [innerHTML]='phone1'></div>
+                                <!-- <textarea class="newPhone" [value]="phone" name="newPhone" [(ngModel)]="phone"></textarea> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>email</label>
+                                <div id="textareaEmail" class="textarea enable_white" contenteditable [innerHTML]='emai'></div>
+                                <!-- <textarea type="email" [value]="email" class="newEmail"  name="newEmail" [(ngModel)]="email"></textarea> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>fax</label>
+                                <div id="textareaFax1" class="textarea enable_white" contenteditable [innerHTML]='fax1'></div>
+                                <!-- <textarea type="text" [value]="fax" class="newFax" name="newFax" [(ngModel)]="fax"></textarea> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>website</label>
+                                <div id="textareaWebsite" class="textarea enable_white" contenteditable [innerHTML]='website'></div>
+                                <!-- <textarea type="text" [value]="website" class="newWebsite" name="newWebsite" [(ngModel)]="website"></textarea> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>website</label>
+                                <div id="textareaWebsite" class="textarea" contenteditable [innerHTML]='website'></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="element_container text_left">
+                                <label>office hours</label>
+                                <div id="textareaoFfice_hour" class="textarea" contenteditable [innerHTML]='office_hour'></div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>Latitude</label>
+                                <div id="Latitude" class="textarea enable_white" contenteditable [innerHTML]='Latitude'></div>
+                                <!-- <textarea class="newPhone" [value]="phone" name="newPhone" [(ngModel)]="phone"></textarea> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>Longitude</label>
+                                <div id="Longitude" class="textarea enable_white" contenteditable [innerHTML]='Longitude'></div>
+                                <!-- <textarea [value]="head_of_mission" class="newHead" name="newHead" [(ngModel)]="head_of_mission"></textarea> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>Landmark / near by place</label>
+                                <div id="Landmark" class="textarea enable_white" contenteditable [innerHTML]='Landmark'></div>
+                                <!-- <textarea class="newPhone" [value]="phone" name="newPhone" [(ngModel)]="phone"></textarea> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="label_container text_left">
+                                <label>Working time</label>
+                                <div id="WorkingTime" class="textarea enable_white" contenteditable [innerHTML]='office_hour'></div>
+                                <!-- <textarea [value]="head_of_mission" class="newHead" name="newHead" [(ngModel)]="head_of_mission"></textarea> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="element_container text_left">
+                                <label>
+                                    comments<!--(NO VISA OR PASSPORT QUESTIONS)-->
+                                </label>
+                                <div id="textareaoComments" contenteditable  class="comments enable_white" ></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center;">
+                            <div class="label_container" style="margin-bottom: 10px; display: inline-block;">
+                                <re-captcha (resolved)="resolved($event)" siteKey="6LcPhVYUAAAAAELAie-U7clLL6AB0pZdKpO4OVwG"></re-captcha>
+                                <div *ngIf="captchaError" style="color:red; position: relative; left: 94px;">*{{captchaError_msg}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-6" style="padding-right:7px;">
+                            <div class="element_container" style="text-align: right!important;">
+                                <button type="button" class="my_btn" (click)="update_btn()">Update</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-6" style="padding-left:7px;">
+                            <div class="element_container">
+                                <button type="button" id="report_cancel" class="my_btn my_btn_red">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="updating_msg" class="preloader"> 
+                        <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+                            <g>
+                                <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+                                <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+                                </animateTransform>
+                            </g>
+                        </svg>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+    <span style="display: none;" id="spn_ip"></span>
+</section>

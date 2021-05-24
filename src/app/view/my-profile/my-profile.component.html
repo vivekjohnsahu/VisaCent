@@ -1,0 +1,398 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1" [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'" [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"></ng-progress>
+<div class="wrapper" *ngIf="pageHide">
+    <section class="section_20" style="background-color:#EDEFF1;padding:15px 0px;">
+        <div class="container">
+            
+            <div class="row us_in">
+                <div class="col-sm-3 col_left" style="padding-right:0px;">
+                    <div class="media">
+                        <div class="media-left ic">
+                          <h2>
+                            <span><i class="fas fa-user"></i></span> 
+                            </h2>
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading" style="margin: 0px;margin-top: 5px;">Welcome</h4>
+                          <p style="margin: 0px;color: #005ea5;line-height: normal;font-size: 21px;font-family: 'Hammersmith One';">{{name}}</p>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-sm-9 col_left">
+                    <div>
+                        <ul class="profile_opt_ul">
+                            <li id="profile_option">
+                                <a>Choose Option <i class="fas fa-chevron-down"></i></a>
+                            </li>
+                            <div>
+                                <li><a class="dashboard" routerLink="/my-profile/dashboard" title="Dashboard"><span>Dashboard</span><i class="fas fa-tachometer-alt"></i></a></li>
+                                <li><a class="applications" routerLink="/my-profile/applications" title="Applications"><span>Applications</span> <i class="fas fa-shopping-bag"></i></a></li>
+                                <li><a class="update-profile" routerLink="/my-profile/update-profile" title="Update Profile"><span>Update Profile</span> <i class="far fa-user-circle"></i></a></li>
+                                <li><a class="change-password" routerLink="/my-profile/change-password" title="Change Password"><span>Change Password</span> <i class="fas fa-key"></i></a></li>
+                                <li><a (click)="logOut()" title="Logout"><span>Logout</span> <i class="fas fa-sign-out-alt"></i></a></li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section_20">
+        <div class="container">
+                <div [hidden]="user_dashboard" style="padding:0px;">
+                
+                    <div class="row">
+                        <div class="col-lg-9">
+                                <div class="row">
+                                        <div class="col-sm-3" style="padding-right:0px;">
+                                            <div class="user_pro">
+                                                <h1><i class="fas fa-smile"></i></h1>
+                                                <h3 style="color:#EDEFF1">{{name}}</h3>
+                                                <p><a href="javascript:void(0);" style="color: #2fffff;font-size: 15px;">{{email}}</a></p>
+                                                <p>Activated <span style="color: #16e416;"><i class="fas fa-circle"></i></span></p>
+                                            </div>             
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="row">
+                                                <div class="col-sm-6" style="padding-right:0px;">
+                                                    <div class="dash_div" routerLink="/my-profile/applications">
+                                                        <h1><i class="far fa-id-card"></i></h1>
+                                                        <h3>Total Application</h3>
+                                                        <p>{{total_orders}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="dash_div" (click)="underProcessAppli()">
+                                                        <h1><i class="fas fa-spinner"></i></h1>
+                                                        <h3>Under Process Application</h3>
+                                                        <p>{{processing}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h3 style="text-align:left!important;margin-top:15px;">notes</h3>
+                                            <div class="" style="height:200px;overflow-y: scroll;padding-left:15px;border:1px solid #ddd;margin-top:5px;">
+                                                <article>
+                                                    
+                                                    <ul class="a" *ngFor="let activity of admin_activity" >
+                                                    <li> {{activity.alert}}</li>
+                                                    <li> {{activity.applicant}}</li>
+                                                    <li> {{activity.date_time}}</li>
+                                                    <li> {{activity.order_id}}</li>
+                                                        <hr />
+                                                </ul>
+                                                </article>
+                                            </div>
+                                        </div>	                                                                                                  
+                                    </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="r_div">
+                                <h3>Important Links</h3>
+                                <ul style="list-style-type: none;padding-left:0px;margin-top:7px;font-size: 16px;">
+                                    <li><a routerLink="/my-profile/applications" >Making an application</a></li>
+                                    <li><a>Uploading documents</a></li>
+                                    <li><a>Photographs</a></li>
+                                </ul>
+                            </div>
+                           
+                        </div>
+                    </div>   
+                
+            </div>
+            <div [hidden]="!my_account">
+                    <div class="icon_meaning_div">
+                        <h4><i class="fa fa-info-circle"></i> Application Status Legend </h4>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="" >
+                                    <ul class="inst_ul">
+                                        <li><span>Pending</span>-  Your VISA application is not yet submitted. </li>
+                                        <li><span>In Progress</span>- Your VISA application is being reviewed.</li>
+                                        <li><span>Submitted</span>- Your VISA application has been submitted. </li>
+                                        <li><span>Rejected</span>- Your VISA application has been declined.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="inst_ul" >
+                                    <ul>
+                                        <li><span>Request Document / Data Amendment</span>- Your VISA application requires additional information. </li>
+                                        <li><span>Canceled</span>- Your VISA application has been declined.</li>
+                                        <li><span>Request Interview</span>- Your VISA application requires attending an Interview session.</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              
+                
+                <div *ngFor="let order1 of orders_user; let i = index" class="div_for_user row">
+                    <div class="col-md-12 new">
+                        <h4>
+                            <span class="pull left">Order Id: {{order1.order_id}} </span> <b>|</b>
+                            <span class="pull left o_date"><i class="far fa-calendar-alt"></i> {{order1.order_date}}
+                            </span> <b>|</b>
+                            <span>Visa Country: <strong *ngFor="let list of cntryList" [hidden]="list.id!=order1.visa_for_country" style="font-weight: normal;">{{list.name}}</strong></span>
+                            <b>|</b>
+                            <span class="pull left pay_status" [hidden]="!(order1.payment_status=='done')" ><i class="far fa-credit-card"></i>&nbsp;<strong style="color:#41e256;text-transform: capitalize;font-weight:normal;"> {{order1.payment_status}} <i class="fas fa-check-square"></i></strong> </span> 
+                            <span class="pull left pay_status" [hidden]="!(order1.payment_status=='pending')" ><i class="far fa-credit-card"></i>&nbsp;<strong style="color:#ff684e;text-transform: capitalize;font-weight:normal;"> {{order1.payment_status}} <i class="fas fa-clock"></i></strong></span>                            
+                            <span class="pull-right icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="open" style="width: 100%;overflow: hidden;">
+                        <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong class="left_label">Arrival Date</strong>
+                            </div>
+                            <div class="col-xs-8">
+                                <p>{{order1.arrival_date}} (DD-MM-YYYY)</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <strong class="left_label">No of Application</strong>
+                            </div>
+                            <div class="col-xs-8">
+                                <p>{{order1.visa_no}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <strong class="left_label">Processing Type</strong>
+                                </div>
+                                <div class="col-xs-8" [hidden]="!(order1.processing_type=='Normal')">
+                                    <p class="processing_type nor"> {{order1.processing_type}}                                                              </p>
+                                </div>
+                                <div class="col-xs-8" [hidden]="!(order1.processing_type=='Rush Processing')">
+                                    <p class="processing_type rush">{{order1.processing_type}}                               </p>
+                                </div>
+                                <div class="col-xs-8" [hidden]="!(order1.processing_type=='Super Rush Processing')">
+                                    <p class="processing_type super">{{order1.processing_type}} <span><i class="fas fa-bullhorn"></i></span></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <strong class="left_label">Total Fee</strong>
+                                </div>
+                                <div class="col-xs-8">
+                                    <p>{{order1.total_fee}} USD</p>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row" [hidden]="!(order1.payment_status=='pending')">
+                            <div class="col-xs-12">
+                                <input type="button" name="btn" class="my_btn" (click)="payNow(i)" value="Pay Now">
+                            </div>
+                        </div>
+                        <div  class="col-md-6" style="padding:0px" [hidden]="!(order1.payment_status=='done')">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <strong class="left_label">Transaction Id</strong>
+                                </div>
+                                <div class="col-xs-8">
+                                    <p>{{order1.txn_id}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account_related_css_order col-md-12">
+                        <h5>Passport Details</h5>
+                        <div class="account_css_scroll">
+                            <table id="appli_pass_tbl" class="table_order">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center;">Full Name</th>
+                                        <th style="text-align: center;">DOB</th>
+                                        <th style="text-align: center;">Nationality</th>
+                                        <th style="text-align: center;">Passport No.</th>
+                                        <th style="text-align: center;">Visa Status</th>
+                                        <th style="text-align: center;">Visa Type</th>
+                                        <th style="text-align: center;">Review</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let apli of order1.applicants; let j = index" [ngClass]="{'kkkkkk':apli.is_final_submit==1, 'dfsdfs':apli.is_final_submit==0}">
+                                        <td>{{apli.name}}</td>
+                                        <td>{{apli.dob}}</td>
+                                        <td>
+                                            <ul style="padding-left:0px;list-style-type:none;margin:0px;">
+                                                <li *ngFor="let list of cntryList" [hidden]="list.id!=apli.nationality" [ngClass]="{'bbbb':list.id!=apli.nationality}">
+                                                    {{list.name}}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>{{apli.passport_no}}</td>
+                                        <td>
+                                            {{apli.total_fee}}
+                                            <span class="ap_mg" style="text-transform: capitalize;" title="Please complete your application">
+                                                <strong>{{apli.visa_status}}</strong><br />
+                                                <span *ngIf="apli.visa_status=='success'" (click)="printdock(i,j,apli.type,apli.visas)" style="color:orange;cursor:pointer;">Print Visa</span>
+                                            </span>
+                                            <!-- <div [hidden]="!visasPrint" id="visa_{{i}}_{{j}}">
+                                                    <img src="{{apli.visas}}" *ngIf="apli.type!='pdf'">
+                                                    <object style="width:500px;height:500px;" *ngIf="apli.type=='pdf'" data="{{apli.visas}}" type="application/pdf">
+                                                    <embed src="{{apli.visas}}" type="application/pdf"/></object>
+                                                    <input type="hidden" id="inp" value="{{apli.visas}}">
+                                                </div> -->
+                                        </td>
+                                        <td>{{apli.visa_type}}</td>
+                                        <td [hidden]="!(order1.payment_status=='done')" class="bbbb">
+                                            <button (click)="amountPay(i,j)" class="my_btn my_btn_submit width_auto" style="padding-top: 6px;padding-bottom: 6px;">Detail <i class="fas fa-info-circle"></i></button>
+                                        </td>
+                                        <td [hidden]="!(order1.payment_status=='pending')"> Make payment to complete application</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>        
+                </div>
+                <div>
+                    <ul style="padding-left:0px;list-style-type: none;">
+                        <li> <i class="far fa-hand-point-right"></i> Please click PRINT VISA to print your official VISA paper and print multiple copies of your eVISA paper to avoid lost, misplaced or damaged paper.</li>
+                        <li><i class="far fa-hand-point-right"></i> Please use a good quality A4 paper and do not fold more than once for smoother verification process upon your arrival.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form_wrapper" [hidden]="!my_profile">
+                <form class="change_pro_form">
+                    <h3 style="margin-bottom: 15px;text-align: center;">Update Profile</h3>
+                    <div id="myalert" class="my_alert my_alert_pos" *ngIf="updated_suc">
+                        <button type="button" class="close" data-dismiss="myalert">&times;</button>
+                        <span class="sus">Profile{{updated_suc_msg}}</span>
+                    </div>
+                    <div id="myalert" class="my_alert my_alert_pos my_alert_red" *ngIf="updated_error">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <span class="sus">Profile{{updated_error_msg}}</span>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="label_container">
+                                <label>Email <i class="far fa-envelope"></i></label>
+                            </div>
+                            <div class="element_container">
+                                <input type="text" disabled class="emailOne " name="email" [(ngModel)]="email" value="" style="cursor: no-drop">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="label_container">
+                                <label>Name <i _ngcontent-c7="" class="fas fa-pencil-alt"></i></label>
+                            </div>
+                            <div class="element_container">
+                                <input type="text" class="nameOne enable_white" [(ngModel)]="name" name="name" id="user_name" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="label_container">
+                                <label>Phone <i _ngcontent-c7="" class="fas fa-mobile-alt"></i></label>
+                            </div>
+                            <div class="element_container phone_dropdown">
+                                <select name="" id="flagDropVlu" class="flagEr enable_white">    
+                                    <option *ngFor="let flag of flagDrop" [selected]="codeCnt==flag.value" value="{{flag.value}}">{{flag.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flag.country}}</option>
+                                </select>
+                                <input type="number" class="numberOne numberVal enable_white" maxlength="15" name="number" minlength="6" style="width: 100%;height: 35px;padding-left: 70px;" required [(ngModel)]="number" (keypress)="isNumberKey($event)">      
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="margin:0px;margin-top:7px;font-size: 14px;">I would like to receive information from Visacent about visas and immigration services </p>
+                            <div>
+                                <label style="margin-right:10px;"><input type="radio" style="cursor: pointer;" [checked]="is_subscribe=='1'" (change)="radioVlue('1')" name="updateUser" value="yes">&nbsp;YES</label>
+                                <label><input type="radio" style="cursor: pointer;" [checked]="is_subscribe=='0'" (change)="radioVlue('0')" name="updateUser" value="no"> NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="element_container" style="margin-top:20px;">
+                                <input type="submit" (click)="myProfileSub()" name="submit_btn" class=" visadetail_1 my_btn" value="Update">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="" [hidden]="!change_password">
+                
+                
+                <!-- <h3 style="margin-top: 0;">Change Password</h3> -->
+                <form class="change_pro_form">
+                <h3 style="margin-bottom: 15px;text-align: center;">Change Password</h3>
+                <div id="myalert" class="my_alert my_alert_pos" *ngIf="change_suc">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="sus">{{change_suc_msg}}</span>
+                </div>
+                <div id="myalert" class="my_alert my_alert_pos my_alert_red" *ngIf="change_error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="sus">{{change_error_msg}}</span>
+                </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="label_container">
+                                <label width="30%">Current Password *
+                                    <!-- <i class="fas fa-ellipsis-h"></i> -->
+                                </label>
+                            </div>
+                            <div class="element_container">
+                                <input type="password" [(ngModel)]="oldPassword" class="oldPass enable_white" name="cur_pass">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="label_container">
+                                <label>New Password *
+                                    <!-- <i class="fas fa-ellipsis-h"></i> -->
+                                </label>
+                            </div>
+                            <div class="element_container">
+                                 <input type="password" [(ngModel)]="newPassword" class="newPass enable_white" name="new_pass">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="label_container">
+                                <label>Confirm New Password *
+                                    <!-- <i class="fas fa-ellipsis-h"></i> -->
+                                </label>
+                            </div>
+                            <div class="element_container">
+                                <input type="password" [(ngModel)]="matchPassword" class="matchPass enable_white" name="con_pass"> <span id="pass_err_spn" style="display: none;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="element_container" style="margin-top:20px;">
+                                <input type="button" (click)="changePassSub()"  name="submit_btn" class="visadetail_1 my_btn" value="Update">
+                            </div>
+                        </div>
+                    </div>        
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<div *ngIf="processmy" class="preloader"> 
+    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+        <g>
+            <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+            <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+            </animateTransform>
+        </g>
+    </svg>
+</div>

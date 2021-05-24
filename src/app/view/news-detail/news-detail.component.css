@@ -1,0 +1,24 @@
+.rep_div div
+{
+    float:left;
+}
+
+.borderCls{
+    border: solid 1px red!important;
+}
+.reply_form .label_container
+{
+    text-align: left;
+    margin-bottom: 4px;
+}
+.reply_form .element_container
+{
+    margin-bottom: 15px;
+}
+@media (max-width:992px)
+{
+    .capcha,.bt
+    {
+        text-align: center;
+    }
+}

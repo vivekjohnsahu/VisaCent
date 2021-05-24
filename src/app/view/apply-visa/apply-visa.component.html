@@ -1,0 +1,290 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+             [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'"
+             [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+<section class="table_section section_20">
+    <div class="container">
+        <div class="main_heading main_heading_wbg">
+            <h1>Apply For {{country_ctn}} Visa</h1>
+            <span style="margin-bottom:30px;"></span>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="drop_container drop_container1 embassy_of" style="margin-right:auto;">
+                    <h3 style="text-align: center;color:#005ea5;">Select Country</h3>
+                    <form>
+                        <select name="belong" (change)="changeCuntry($event.target)" class="enable_white" style="border: 1px solid #ddd;">
+                            <option disabled>Choose Country</option>
+                            <option *ngFor="let list of topCntry" [value]="list.slug_country_name">{{list.name}}</option>
+                            <option disabled >-----------</option>
+                            <option *ngFor="let list of country" [value]="list.slug_country_name">{{list.name}}</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div [hidden]="!tableRequired" style="text-align: center;">
+    <div class="errorshow">
+        <p style="color:#8e8e8e;font-size: 33px;text-transform: capitalize;">visa not required</p>
+    </div>
+</div>
+<div [hidden]="!tableRegular" style="text-align: center;">
+    <div class="errorshow">
+        <p class="container" style="color:#055da5;">
+            Citizens of the <span style="text-transform: capitalize;">{{country_ctn}}</span> must obtain a visa in advance. You have to apply for a visa through a <span style="text-transform: capitalize;">{{bnewCnty}}</span> diplomatic mission or one of 
+            its authorized visa agents outside <span style="text-transform: capitalize;">{{bnewCnty}}</span>. You will need to visit the Embassy in your country to process this visa. We can help you
+            prepare the required documentation.
+        </p>
+    </div>
+</div>
+<section class="table_section section_20" *ngIf='tableViasaToggle' style="padding-top:0px;">
+    <div class="container table_data">
+        <div class=" table_div">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive table_cont">
+                        <table class="table table-hover table-bordered xzy">
+                            <thead>
+                                <tr>
+                                    <th>Visa Type</th>
+                                    <th>Visa Cost</th>
+                                    <th>Service Fee</th>
+                                    <th>Number Of Entries</th>
+                                    <th>Max Stay</th>
+                                    <th>Validity</th>
+                                    <th>Processing</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="cursor: pointer;" *ngFor="let visa of visaApplyTbl; let i = index">
+                                <tr class="active">
+                                    <td>
+                                        <input [checked]="i === 0" type="radio" name="visaTable" style="margin-right: 8px;"/>{{visa.visa_type}}
+                                    </td>
+                                    <td>{{visa.visa_cost}}</td>
+                                    <td>{{visa.service_fee}}</td>
+                                    <td>{{visa.no_of_entry}}</td>
+                                    <td>{{visa.max_stay}}</td>
+                                    <td>{{visa.visa_expire}}</td>
+                                    <td>{{visa.processing_time}}</td>
+                                    <td><button type="button" (click)="visaDetial(visa.visa_type_slug)" class="my_btn width_auto" style="font-size: 14px;padding-top:8px;padding-bottom:8px;">Apply</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='tableViasaToggle' class="container">
+        <div class="table_2" *ngFor="let visa of visaApplyTbl; let i = index">
+            <div class="row" style="background: #055da5;color: white;font-size: 18px;">
+                <div class="col-sm-12">{{visa.visa_type}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 tab_da1">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                <label>Visa Cost</label>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{visa.visa_cost}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                <label>Service Fee</label>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{visa.service_fee}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                <label>Visa Type</label>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{visa.visa_type}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                <label>Number Of Entries</label>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{visa.no_of_entry}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                <label>Max Stay</label>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{visa.max_stay}}</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                <label>Validity</label>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{visa.visa_expire}}</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                <label>Processing</label>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{visa.processing_time}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 tab_da2">
+                    <div class="b_cont">
+                        <td><button type="button" (click)="visaDetial(visa.visa_type_slug)" class="my_btn width_auto" style="font-size: 14px;padding-top:8px;padding-bottom:8px;">Apply</button></td>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</section>
+<section class="section_20">
+    <div class="doc_div">
+        <h2 class="text-center" style="margin-bottom:30px;">Step-by-step guide to applying for a Vietnam Visa online</h2>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="doc_detail">
+                    <h3>1 Complete Online application form</h3>
+                    <p>This site is applicable to all applicants who are eligible to apply for a
+                        Vietnam “Visa on Arrival”. If you wish to apply for a Vietnam visa, 
+                        Please complete the Visa Application Process. You can obtain your visa 
+                        as per your requirement under following categories-</p>
+                    <ul>
+                        <li>Tourist Visa Subclass</li>
+                        
+                            <ul type="circle">
+                                <li>1 month single entry</li>
+                                <li>3 months single entry</li>
+                                <li>1 month multiple entry</li>
+                                <li>3 months multiple entry</li>
+                            </ul>
+                        
+                    </ul>
+                    <ul>
+                        <li>Business Visa Subclass</li>
+                        
+                            <ul type="circle">
+                                <li>1 month single entry</li>
+                                <li>3 months single entry</li>
+                                <li>1 month multiple entry</li>
+                            </ul>
+                        
+                    </ul>
+                </div>   
+            </div>
+            <div class="col-sm-6">
+                <div class="doc_img">
+                    <img src="assets/images/test.jpg" class="img-responsive" />
+                </div>   
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-sm-6 col-sm-push-6">
+                <div class="doc_detail">
+                    <h3>1 Complete Online application form</h3>
+                    <p>This site is applicable to all applicants who are eligible to apply for a
+                        Vietnam “Visa on Arrival”. If you wish to apply for a Vietnam visa, 
+                        Please complete the Visa Application Process. You can obtain your visa 
+                        as per your requirement under following categories-</p>
+                    <ul>
+                        <li>Tourist Visa Subclass</li>
+                        
+                            <ul type="circle">
+                                <li>1 month single entry</li>
+                                <li>3 months single entry</li>
+                                <li>1 month multiple entry</li>
+                                <li>3 months multiple entry</li>
+                            </ul>
+                        
+                    </ul>
+                    <ul>
+                        <li>Business Visa Subclass</li>
+                        
+                            <ul type="circle">
+                                <li>1 month single entry</li>
+                                <li>3 months single entry</li>
+                                <li>1 month multiple entry</li>
+                            </ul>
+                        
+                    </ul>
+                </div>   
+            </div>
+            <div class="col-sm-6 col-sm-pull-6">
+                <div class="doc_img">
+                    <img src="assets/images/test.jpg" class="img-responsive" />
+                </div>   
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="doc_detail">
+                    <h3>1 Complete Online application form</h3>
+                    <p>This site is applicable to all applicants who are eligible to apply for a
+                        Vietnam “Visa on Arrival”. If you wish to apply for a Vietnam visa, 
+                        Please complete the Visa Application Process. You can obtain your visa 
+                        as per your requirement under following categories-</p>
+                    <ul>
+                        <li>Tourist Visa Subclass</li>
+                        
+                            <ul type="circle">
+                                <li>1 month single entry</li>
+                                <li>3 months single entry</li>
+                                <li>1 month multiple entry</li>
+                                <li>3 months multiple entry</li>
+                            </ul>
+                        
+                    </ul>
+                    <ul>
+                        <li>Business Visa Subclass</li>
+                        
+                            <ul type="circle">
+                                <li>1 month single entry</li>
+                                <li>3 months single entry</li>
+                                <li>1 month multiple entry</li>
+                            </ul>
+                        
+                    </ul>
+                </div>   
+            </div>
+            <div class="col-sm-6">
+                <div class="doc_img">
+                    <img src="assets/images/test.jpg" class="img-responsive" />
+                </div>   
+            </div>
+        </div>
+    </div>
+</section>

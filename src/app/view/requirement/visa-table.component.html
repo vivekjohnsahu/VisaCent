@@ -1,0 +1,251 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1" [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'" [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"></ng-progress>
+<section *ngIf="pageHide" style="padding: 0px;">
+    <section class="table_section section_20">
+        <div class="container table_data">
+            <div class="main_heading main_heading_wbg">
+                <h2 class="table_h">Get Your {{fromCountrySlugName}} Tourist e-Visa Online Now</h2>
+                <span></span>
+            </div>
+            <div class=" table_div">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="drop_container nationlity">
+                            <h3><i _ngcontent-c4="" class="fas fa-flag"></i> Nationality:</h3>
+                            <form>
+                                <select name="shape_id" (change)="changeShapeOne($event.target)" class="enable_white">
+                                    <option style="display: none;">{{nationalityChangeName}}</option>
+                                    <option *ngFor="let list of topCntryOne" [value]="list.slug_country_name">{{list.name}}</option>
+                                    <option disabled>-----------</option>
+                                    <option *ngFor="let list of countryOne" [value]="list.slug_country_name">{{list.name}}</option>
+                                </select>
+                                <!-- list.slug_country_name=='travellingChange' -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="drop_container nationlity">
+                            <h3>Travelling to: <i class="fa fa-plane" aria-hidden="true"></i></h3>
+                            <form>
+                                <select name="shape_id" class="shape_hide enable_white" id="travling_cn" (change)="changeShapeTwo($event.target)">
+                                    <option style="display: none;">{{travellingChangeName}}</option>
+                                    <option *ngFor="let list of topCntryTwo" [value]="list.slug_country_name">{{list.name}}</option>
+                                    <option disabled>-----------</option>
+                                    <option *ngFor="let list of countryTwo" [value]="list.slug_country_name">{{list.name}}</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" [hidden]="!tableShow">
+                    <div class="col-md-12">
+                        <div class="table-responsive table_cont">
+                            <table class="table table-hover table-bordered xzy">
+                                <thead>
+                                    <tr>
+                                        <th>Visa Type</th>
+                                        <th>Visa Cost</th>
+                                        <th>Service Fee</th>
+                                        <th>Number Of Entries</th>
+                                        <th>Max Stay</th>
+                                        <th>Validity</th>
+                                        <th>Processing</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="cursor: pointer;" *ngFor="let visaSummry of visaTable; let i = index" class="tableSelect">
+                                    <tr class="active" (mouseenter)="radioChek()" (click)="ChangeBottom(i)">
+                                        <td>
+                                            <input [checked]="i === 0" type="radio" name="visaTable" style="margin-right: 8px;" />{{visaSummry.visa_type}}
+                                        </td>
+                                        <td>{{visaSummry.visa_cost}}</td>
+                                        <td>{{visaSummry.service_fee}}</td>
+                                        <td>{{visaSummry.no_of_entry}}</td>
+                                        <td>{{visaSummry.max_stay}}</td>
+                                        <td>{{visaSummry.visa_expire}}</td>
+                                        <td>{{visaSummry.processing_time}}</td>
+                                        <td>
+                                            <button type="button" (click)="formDetial(visaSummry.visa_type_slug)" class=" my_btn width_auto" style="font-size: 14px;padding-top:8px;padding-bottom:8px;">Apply</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div [hidden]="!tableRequired" style="text-align: center;">
+                    <div class="errorshow">
+                        <p style="color:#8e8e8e;font-size: 33px;text-transform: capitalize;">visa not required</p>
+                    </div>
+                </div>
+                <div [hidden]="!tableRegular" style="text-align: center;">
+                    <div class="errorshow">
+                        <p>
+                            Citizens of the <span style="text-transform: capitalize;">{{nationalityChangeName}}</span> must obtain a visa in advance. You have to apply for a visa through a <span style="text-transform: capitalize;">{{travellingChangeName}}</span> diplomatic mission or one of 
+                            its authorized visa agents outside <span style="text-transform: capitalize;">{{travellingChangeName}}</span>. You will need to visit the Embassy in your country to process this visa. We can help you
+                            prepare the required documentation.
+                        </p>
+                    </div>
+                </div>
+                <div [hidden]="!tableShow">
+                    <div class="table_2" *ngFor="let visaSummry of visaTable; let i = index">
+                        <div class="row" style="background: #055da5;color: white;font-size: 18px;">
+                            <div class="col-sm-12">{{visaSummry.visa_type}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 tab_da1">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>
+                                            <label>Visa Cost</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>{{visaSummry.visa_cost}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>
+                                            <label>Service Fee</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>{{visaSummry.service_fee}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>
+                                            <label>Visa Type</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>{{visaSummry.visa_type}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>
+                                            <label>Number Of Entries</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>{{visaSummry.no_of_entry}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>
+                                            <label>Max Stay</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>{{visaSummry.max_stay}}</p>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>
+                                            <label>Validity</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>{{visaSummry.visa_expire}}</p>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p>
+                                            <label>Processing</label>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>{{visaSummry.processing_time}}</p>
+                                    </div>
+                                </div>
+                            <!-- <div class="row">
+                                    <div class="col-sm-6">
+                                        <p><label>Visa type</label>  </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><label>
+                                            Tourist visa 
+                                            <input [checked]="i === 0" type="radio" name="radioMobile" style="margin-right: 8px;"/>
+                                            </label> 
+                                        </p>
+                                    </div>
+                                </div> -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 tab_da2">
+                                <div class="b_cont">
+                                    <button type="button" class="my_btn my_btn_green" (click)="formDetial(visaSummry.visa_type_slug)">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                      <div [hidden]="!tableRequired" style="text-align: center;">
+                            <div class="errorshow">
+                                <p style="color:#8e8e8e;font-size: 33px;text-transform: capitalize;">visa not required</p>
+                            </div>
+                        </div>
+                        <div [hidden]="!tableRegular" style="text-align: center;">
+                            <div class="errorshow">
+                                <p>
+                                    Citizens of the <span style="text-transform: capitalize;">{{nationalityChangeName}}</span> must obtain a visa in advance. You have to apply for a visa through a <span style="text-transform: capitalize;">{{travellingChangeName}}</span> diplomatic mission or one of 
+                                    its authorized visa agents outside <span style="text-transform: capitalize;">{{travellingChangeName}}</span>. You will need to visit the Embassy in your country to process this visa. We can help you
+                                    prepare the required documentation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------------------end table section ---------------------->
+    <section class="section_20">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="visa-sec">
+                        <div class="main_heading main_heading_wbg">
+                            <h2 style="color:#005ea5;">REQUIREMENTS FOR BUSINESS EVISA FOR <span>Brazil</span> </h2>
+                        </div>
+                        <ul class="req_table" id="link_slid">
+                            <li>Regular Passport holders of <span>India</span> can apply for <span>Brazil</span> Business e-Visa.</li>
+                            <li>The applicant must have passport validity for upto 6 months with at least 2 blank pages for stamping by the Immigration Officer .</li>
+                            <li>Your e-Visa stay period in <span>Brazil</span> will be 90 days per year.
+                            </li>
+                            <li>You can apply for <span>Brazil</span> Business e-Visa if the purpose of visit is business related.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center visa-apply-headding">
+                    <h2>DOCUMENTS REQUIRED FOR <span>BRAZIL</span> EVISA </h2>
+                    <ul type="disk" class="req_table">
+                        <li><strong>Scanned copy of <span>Indian</span> passport.</strong> A clear scan of the information pages of your valid, signed passport. The passport must also have 2 remaining blank pages upon arrival in <span>Brazil</span>.</li>
+                        <li><strong>Digital photograph:</strong> must be uploaded to the applicant’s profile.</li>
+                        <li>Scanned copy of Business Card or visiting card.</li>
+                        <li>You can apply for Brazil Business e-Visa if the purpose of visit is business related.</li>
+                    </ul>
+                    <p><i class="far fa-hand-point-right"></i> You can apply for <span style="color:#005ea5;font-weight: bold;">Brazil</span> e-Visa through Online Visa Application form.
+                        <br />
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </section>
+</section>
+<div *ngIf="pade_error_show">
+    <span>Data Not Found</span>
+</div>

@@ -1,0 +1,775 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1" [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'" [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"></ng-progress>
+<section [hidden]="!pageHide" style="padding:0px;">
+    <section class="section_20 sec1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form_container">
+                        <form autocomplete="off" style="position:relative;">
+                            <!-- <div id="mydiv"> -->
+                            <div class="alert alert-info alert-dismissible show info_alert" style="position: relative;" *ngIf="chek_msg">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <span>Check Form And Submit</span>
+                            </div>
+                            <!-- </div> -->
+                            <div id="faildiv">
+                                <div class="alert alert-danger alert-dismissible show" style="font-size: 19px;text-align: center;" *ngIf="error_chek_msg">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span>{{error_chek_msg_show}}</span>
+                                </div>
+                            </div>
+                            <!-- <div id="faildiv">
+                            <div class="alert alert-danger alert-dismissible show" style="font-size: 19px;text-align: center;" *ngIf="fail_chek_msg">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <span>{{fail_chek_msg_show}}</span>
+                            </div>
+                        </div> -->
+                            <div class="form_part">
+                                <h3><i class="far fa-id-card"></i> General Information 
+
+								<span class="navbar-right">
+									<button type="button" (click)="clickModify()" *ngIf="modify_btn" class="my_btn">Modify
+									</button> 
+									<button type="button" *ngIf="update_btn" (click)="clickUpdate()" class="my_btn ">Update 
+									</button>
+								</span>
+						    </h3>
+                                <div class="row">
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="label_container">
+                                            <label id="lbl_name">Name <i class="fas fa-pencil-alt"></i></label>
+                                        </div>
+                                        <div class="element_container">
+                                            <input maxlength="40" [disabled]="inpu_disabled_val=='1'" class="one nameOne" [ngClass]="{'borderColor': name.invalid && ( name.dirty || name.touched),'enable_white':inpu_disabled_val=='0'}" required #name="ngModel" type="text" name="name" [(ngModel)]="registeruser.name" (focus)="cleanerror()" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="label_container">
+                                            <label id="lbl_email">Email <i class="far fa-envelope"></i></label>
+                                        </div>
+                                        <div class="element_container">
+                                            <input class="one emailOne" [disabled]="inpu_disabled_val=='1'" [ngClass]="{'borderColor': email.invalid && ( email.dirty || email.touched),'enable_white':inpu_disabled_val=='0'}" #email="ngModel" placeholder="demo@gmail.com" pattern="^([a-zA-Z0-9_.]+@[a-zA-Z0-9]+[.][.a-zA-Z]+)$" type="text" name="email" [(ngModel)]="registeruser.email" (focus)="cleanerror1()" required (focusout) ="emailVerified()"/>
+                                        <span class="emailNotVerified" style="color:red;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="label_container">
+                                            <label id="lbl_number">Phone <i class="fas fa-mobile-alt"></i></label>
+                                        </div>
+                                        <div class="element_container phone_dropdown">
+                                            <select name="" id="flagDropVlu" class="flagEr enable_white">
+                                                <option *ngFor="let flag of flagDrop" [selected]="codeCnt==flag.value" value="{{flag.value}}"><span>{{flag.name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flag.country}}</option>
+                                            </select>
+                                            <input (keypress)="isNumberKey($event)" class="one one_number numberOne phn_a enable_white" type="tel" [ngClass]="{'borderColor': number.invalid && ( number.dirty || number.touched)}" #number="ngModel" pattern="^(0|[0-9][0-9]*)$" name="number" [(ngModel)]="registeruser.number" minlength="6" maxlength="15" (focus)="cleanerror2()" required style="width:100%;height:35px;padding-left:68px;"/>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="label_container">
+                                            <label id="lbl_arrival_date">Arrival Date in {{to_country_name}} <i class="far fa-calendar-alt"></i></label>
+                                        </div>
+                                        <div class="element_container" style="display: none;">
+                                        </div>
+                                        <article class="test_article">
+                                            <div>
+                                                <select class="dateSelect test_article day_tes1_1 enable_white" id="arrival_day_id_1" (focus)="ArrivalDayErrerHide()" (change)="ArrivalDate($event.target)" name="Arrival" style="border-right: none;">
+                                                    <option style="display: none">Day</option>
+                                                    <option style="display: none" value="">{{day}}</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select class="MonthSelect test_article month_tes1_1 enable_white" id="arrival_day_id_2" (focus)="ArrivalMonthErrerHide()" (change)="ArrivalMonth($event.target)" style="border-right: none;" name="Arrival">
+                                                    <option style="display: none">Month</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select class="yearSelectExpiration test_article year_tes1_1 enable_white" id="arrival_day_id_3" (focus)="ArrivalYearErrerHide()" (change)="ArrivalYear($event.target)" name="year">
+                                                    <option style="display: none">Year</option>
+                                                </select>
+                                            </div>
+                                        </article>
+                                        <span id="error_msg_arrival" style="color: red"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <aside id="my_aside">
+                                <div class="form_part">
+                                    <article>
+                                        <h3 style="height: 50px;line-height: 50px;text-align: center;">Applicant  List
+                                            <span class="navbar-right">
+                                                <button type="button" (click)="clickModifyTwo()"  id="applicantSingle{{i}}" *ngIf="modify_btnTwo" class="my_btn">Modify
+                                                </button> 
+                                                <button type="button" *ngIf="update_btnTwo" id="clickUpdateSingle{{i}}" (click)="clickUpdateTwo()" class="my_btn">Update 
+                                                </button>
+                                            </span>
+                                        </h3>
+                                        <div *ngFor="let user of users; let i = index">
+                                            <h3><i class="far fa-user"></i> Applicant {{i+1}}   
+                                                <span class="navbar-right" *ngIf="!users.length === 1 || users.length > 1">
+                                                    <button type="button" (click)="removeUser(i)" class="my_btn abc width_auto" style="background-color: red;border: 1px solid #d60202;">Remove <i style="margin-left: 5px;" class="fas fa-user-times"></i></button>
+                                                </span>   
+                                            </h3>
+                                            <div class="row">
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label id="lbl_firstname{{i}}">First Name <i class="fas fa-pencil-alt"></i></label>
+                                                    </div>
+                                                    <div class="element_container">
+                                                        <input maxlength="40" class="two firstnameOne enable_white" id="firstnameOne{{i}}" type="text" [ngClass]="{'borderColor': firstname.invalid && ( firstname.dirty || firstname.touched)}" required #firstname="ngModel" name="firstname{{i}}" [(ngModel)]="user.firstname" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label id="lbl_lastname">Last Name <i class="fas fa-pencil-alt"></i></label>
+                                                    </div>
+                                                    <div class="element_container">
+                                                        <input maxlength="40" class="two lastname enable_white" id="lastname{{i}}" type="text" name="lastname{{i}}" [(ngModel)]="user.lastname" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label>Nationality <i class="fas fa-globe"></i></label>
+                                                    </div>
+                                                    <div class="element_container">
+                                                        <div class="req_select">
+                                                            <!-- <img *ngIf="loaderShow_second" class="loader_first" src="assets/images/loading_apple.gif">   -->
+                                                            <select class="two nationality enable_white" (change)="nationality($event.target,i)" id="id_City{{i}}">
+                                                                <option value="28">Austraila</option>
+                                                                <option value="72">China</option>
+                                                                <option value="29">Canada</option>
+                                                                <option value="30">India</option>
+                                                                <option value="31">United Kingdom</option>
+                                                                <option value="32">United States</option>
+                                                                <option disabled>-----------</option>
+                                                                <option *ngFor="let list of country" [selected]="list.name==selecyCountyName" value="{{list.id}}">{{list.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label id="lbl_bday_date{{i}}">Birthday <i class="far fa-calendar-alt"></i></label>
+                                                    </div>
+                                                    <div class="element_container" style="display: none;">
+                                                    </div>
+                                                    <article class="test_article">
+                                                        <div>
+                                                            <select class="two test_article1 dateSelect enable_white" id="dateSelect{{i}}" style="border-right: none;">
+                                                                <option style="display: none" value="">Day</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                                <option value="13">13</option>
+                                                                <option value="14">14</option>
+                                                                <option value="15">15</option>
+                                                                <option value="16">16</option>
+                                                                <option value="17">17</option>
+                                                                <option value="18">18</option>
+                                                                <option value="19">19</option>
+                                                                <option value="20">20</option>
+                                                                <option value="21">21</option>
+                                                                <option value="22">22</option>
+                                                                <option value="23">23</option>
+                                                                <option value="24">24</option>
+                                                                <option value="25">25</option>
+                                                                <option value="26">26</option>
+                                                                <option value="27">27</option>
+                                                                <option value="28">28</option>
+                                                                <option value="29">29</option>
+                                                                <option value="30">30</option>
+                                                                <option value="31">31</option>
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <select class="two test_article2 MonthSelect enable_white" id="MonthSelect{{i}}" style="border-right: none;">
+                                                                <option style="display: none" value="">Month</option>
+                                                                <option value="01">Jan</option>
+                                                                <option value="02">Feb</option>
+                                                                <option value="03">Mar</option>
+                                                                <option value="04">Apr</option>
+                                                                <option value="05">May</option>
+                                                                <option value="06">Jun</option>
+                                                                <option value="07">Jul</option>
+                                                                <option value="08">Aug</option>
+                                                                <option value="09">Sept</option>
+                                                                <option value="10">Oct</option>
+                                                                <option value="11">Nov</option>
+                                                                <option value="12">Dec</option>
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <select class="two test_article3 yearSelect enable_white" id="yearSelect{{i}}" name="year">
+                                                                <option style="display: none" value="">Year</option>
+                                                            </select>
+                                                        </div>
+                                                    </article>
+                                                    <span class="err_spn" id="error_msg_birth{{i}}" style="color: red"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label>Gender <i class="fas fa-user"></i></label>
+                                                    </div>
+                                                    <div class="element_container">
+                                                        <select class="two gender enable_white" id="gender{{i}}" (change)="genderAll($event.target)">
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label id="lbl_passport_number{{i}}">Passport Number <i class="far fa-id-card"></i></label>
+                                                    </div>
+                                                    <div class="element_container">
+                                                        <input class="two passport_number enable_white" id="passport_number_id{{i}}" type="text" value="" [ngClass]="{'borderColor': passport_number.invalid && ( passport_number.dirty || passport_number.touched)}" required #passport_number="ngModel" name="passport_number{{i}}" maxlength="20" [(ngModel)]="user.passport_number" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label id="lbl_passport_issue_date{{i}}">Passport Issue Date <i class="far fa-calendar-alt"></i></label>
+                                                    </div>
+                                                    <div class="element_container" style="display: none;">
+                                                    </div>
+                                                    <article class="test_article passportIssue_date_any">
+                                                        <div>
+                                                            <select id="passportIssueDayErrerHide{{i}}" class="two dateSelect passportIssue1 enable_white" style="border-right: none;">
+                                                                <option style="display: none" value="">Day</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                                <option value="13">13</option>
+                                                                <option value="14">14</option>
+                                                                <option value="15">15</option>
+                                                                <option value="16">16</option>
+                                                                <option value="17">17</option>
+                                                                <option value="18">18</option>
+                                                                <option value="19">19</option>
+                                                                <option value="20">20</option>
+                                                                <option value="21">21</option>
+                                                                <option value="22">22</option>
+                                                                <option value="23">23</option>
+                                                                <option value="24">24</option>
+                                                                <option value="25">25</option>
+                                                                <option value="26">26</option>
+                                                                <option value="27">27</option>
+                                                                <option value="28">28</option>
+                                                                <option value="29">29</option>
+                                                                <option value="30">30</option>
+                                                                <option value="31">31</option>
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <select id="passportIssueMonthErrerHide{{i}}" class="two MonthSelect passportIssue2 enable_white" style="border-right: none;">
+                                                                <option style="display: none" value="">Month</option>
+                                                                <option value="01">Jan</option>
+                                                                <option value="02">Feb</option>
+                                                                <option value="03">Mar</option>
+                                                                <option value="04">Apr</option>
+                                                                <option value="05">May</option>
+                                                                <option value="06">Jun</option>
+                                                                <option value="07">Jul</option>
+                                                                <option value="08">Aug</option>
+                                                                <option value="09">Sept</option>
+                                                                <option value="10">Oct</option>
+                                                                <option value="11">Nov</option>
+                                                                <option value="12">Dec</option>
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <select id="passportIssueYearErrerHide{{i}}" class="two yearSelect passportIssue3 enable_white" name="year">
+                                                                <option style="display: none" value="">Year</option>
+                                                            </select>
+                                                        </div>
+                                                    </article>
+                                                    <span id="error_msg_pass{{i}}" class="err_spn_pass_issue" style="color: red"></span>
+                                                </div>
+
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label id="lbl_passport_expiration{{i}}">Passport Expiration <i class="far fa-calendar-alt"></i></label>
+                                                    </div>
+                                                    <div class="element_container" style="display: none;">
+                                                    </div>
+                                                    <article class="test_article lbl_pass_expir">
+                                                        <div>
+                                                            <select id="passportExpirationDayErrerHide{{i}}" class="two dateSelect passportExpirationDayErrerHide1 enable_white" style="border-right: none;">
+                                                                <option style="display: none" value="">Day</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                                <option value="13">13</option>
+                                                                <option value="14">14</option>
+                                                                <option value="15">15</option>
+                                                                <option value="16">16</option>
+                                                                <option value="17">17</option>
+                                                                <option value="18">18</option>
+                                                                <option value="19">19</option>
+                                                                <option value="20">20</option>
+                                                                <option value="21">21</option>
+                                                                <option value="22">22</option>
+                                                                <option value="23">23</option>
+                                                                <option value="24">24</option>
+                                                                <option value="25">25</option>
+                                                                <option value="26">26</option>
+                                                                <option value="27">27</option>
+                                                                <option value="28">28</option>
+                                                                <option value="29">29</option>
+                                                                <option value="30">30</option>
+                                                                <option value="31">31</option>
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <select id="passportExpirationMonthErrerHide{{i}}" class="two MonthSelect passportExpirationDayErrerHide2 enable_white" style="border-right: none;">
+                                                                <option style="display: none" value="">Month</option>
+                                                                <option value="01">Jan</option>
+                                                                <option value="02">Feb</option>
+                                                                <option value="03">Mar</option>
+                                                                <option value="04">Apr</option>
+                                                                <option value="05">May</option>
+                                                                <option value="06">Jun</option>
+                                                                <option value="07">Jul</option>
+                                                                <option value="08">Aug</option>
+                                                                <option value="09">Sept</option>
+                                                                <option value="10">Oct</option>
+                                                                <option value="11">Nov</option>
+                                                                <option value="12">Dec</option>
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <select id="passportExpirationYearErrerHide{{i}}" class="two passSelectExpiration passportExpirationDayErrerHide3 enable_white" name="year">
+                                                                <option style="display: none" value="">Year</option>
+                                                            </select>
+                                                        </div>
+
+                                                    </article>
+                                                    <span id="error_msg_passport_Issue{{i}}" class="err_spn_pass_expir" style="color: red"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="label_container">
+                                                        <label>{{to_country_name}} Visa Type <i class="fas fa-id-card"></i></label>
+                                                    </div>
+                                                    <div class="element_container">
+                                                        <div class="req_select">
+                                                            <!-- <img *ngIf="loaderShow_second" class="loader_first" src="assets/images/loading_apple.gif"> -->
+                                                            <select name="selected-visa" class="two indiavisatype enable_white" id="con_visas{{i}}" (change)="indiavisatype($event.target,i)">
+                                                                <option *ngFor="let visa of otherVisa; " [value]="visa.id" [selected]="visa.id === visa_selected[0].id">{{visa.visa_type}}-{{visa.max_stay}},{{visa.no_of_entry}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-6 v_price">
+                                                    <div class="label_container">
+                                                        <p><strong>Visa Price</strong>
+                                                            <br />USD <span id="visa_cost_id{{i}}">{{visa_cost}}</span></p>
+                                                        <a (click)="smallWindo()">Read important instructions</a>
+                                                        <!-- id="smallWindo" -->
+                                                        <!--  -->
+                                                    </div>
+                                                </div>{{totalCost()}}
+                                                <div class="col-sm-3 col-xs-6 s_fee">
+                                                    <div class="label_container" *ngFor="let visa of visa_selected">
+                                                        <p><strong>Service Fees</strong>
+                                                            <br />USD <span id="visa_serv_fee_id{{i}}">{{visa.service_fee}}</span></p>
+                                                        <p>{{visa.visa_type}}</p>
+                                                    </div>
+                                                </div>
+                                                <!--
+                                                <div class="col-sm-">
+                                                    <div class="element_container" *ngIf="!users.length === 1 || users.length > 1">
+                                                        <span class="navbar-right"><button type="button" (click)="removeUser(i)" class="my_btn abc width_auto" style="margin-top:21px; background-color: red">Remove<i style="width: 61px;" class="fas fa-user-times"></i></button></span>
+                                                    </div>
+                                                </div>
+-->
+                                            </div>
+                                            <input type="hidden" name="visa_cost" id="visa_cost_{{i}}" value="{{visa_cost}}">
+                                            <input type="hidden" name="visa_service" id="visa_service_{{i}}" value="{{service_fee}}">
+                                            <div *ngIf="!users.length === 1 || users.length > 1"><hr/></div>
+                                        </div>
+                                    </article>
+                                    <div class="col-sm-" *ngIf="!addUser_btn">
+                                        <div class="element_container text-right">
+                                            <span><button type="button" (click)="addUser(i)" class="my_btn abc width_auto">Add Applicant <i class="fas fa-user-plus"></i></button></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section_20" style="background-color:#EDEFF1;">
+        <div class="container">
+            <div class="form_container">
+                <form autocomplete="off">
+                    <h3 style="margin-bottom: 21px;"><i class="far fa-calendar-alt"></i> Processing Time
+					<span class="navbar-right">
+						<button *ngIf="modify_btnThree" (click)="clickModifyThree()" type="button" class="my_btn">Modify
+						</button> 
+						<button *ngIf="update_btnThree" type="button" (click)="clickUpdateThree()" class="my_btn">Update 
+						</button>
+					</span>
+				</h3>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 tableSelect ">
+                            <div class="processing_time_div parent-selector" (click)="radioChek('radiochek')">
+                                <label>
+                                    <input class="three radiochek" type="radio" [value]="visa_selectdd_Id" checked="checked" name="radiobtn" /> Standard Processing</label>
+                                <p *ngFor="let visa of visa_selected">
+                                    <span>
+                                {{visa.processing_time}}
+
+                                </span>
+                                    <br /> {{visa.visa_type}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 tableSelectRush">
+                            <div class="processing_time_div parent-selector allvalue2" (click)="radioChek('radiochek2')">
+                                <label>
+                                    <input class="three radiochek2" type="radio" name="radiobtn" value="{{rushId}}" /> Rush Processing</label>
+                                <p>
+                                    <span>
+                                {{rush_precessing_time}}-{{rushPrecessing_fee}}
+                                </span>
+                                    <br /> {{rush_processing_type}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 tableSelectSuper">
+                            <div class="processing_time_div parent-selector allvalue3" (click)="radioChek('radiochek3')">
+                                <label>
+                                    <input class="three radiochek3" type="radio" name="radiobtn" value="{{superId}}" /> Super Rush Processing</label>
+                                <p>
+                                    <span>
+                                {{superprecessing_time}}-{{superPrecessing_fee}}
+                                </span>
+                                    <br /> {{superprocessing_type}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="section_20">
+        <div class="container">
+            <div class="form_container">
+                <form autocomplete="off">
+                    <h3><i class="far fa-money-bill-alt"></i> Total
+					<!-- <span class="navbar-right">
+						<button type="button" (click)="clickModifyfour()" *ngIf="modify_btnfour" class="my_btn">Modify
+						</button> 
+						<button type="button" *ngIf="update_btnFour" (click)="clickUpdatefour()" class="my_btn">Update 
+						</button>
+					</span> -->
+				</h3>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="label_container label_left">
+                                <label style="margin-top:10px;margin-bottom:3px;">Currency: <i class="fas fa-hand-holding-usd"></i></label>
+                            </div>
+                            <div class="element_container">
+                                <select id="priceSighn" class="four currency" (change)="currency($event.target)">
+                                    <option value="USD">USD</option>
+                                    <option value="SLL">SLL</option>
+                                    <option value="SOS">SOS</option>
+                                </select>
+                            </div>
+                            <div class="">
+                                <h4 style="margin-top: 7px;">{{priceSighn}} {{total_cost}}</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="text-align: center;margin-top: 20px;">
+                            <!-- <div class="label_container" style="margin-bottom: 10px; display: inline-block;"> -->
+                            <re-captcha (resolved)="resolved($event)" siteKey="6LcPhVYUAAAAAELAie-U7clLL6AB0pZdKpO4OVwG"></re-captcha>
+                            <div *ngIf="captchaError" style="color:red; position: relative; left: 94px;">*{{captchaError_msg}}</div>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-4">
+                            <button type="button" (click)="formfilslide('modify')" *ngIf="!next_btn_hide" class="my_btn nextOne pull-right" style="margin-top: 22px;">
+                                <i class="" style="margin-right: 8px;"> </i> Next
+                            </button>
+                            <button type="button" (click)="formfilslide('final')" *ngIf="submit_btn_hide" class="my_btn my_btn_submit pull-right" style="margin-top: 22px;border-color: #077080!important;background-color: #077080!important;">
+                                <i *ngIf="spinner" class="fa fa-lock fafa fa-spinner fa-spin" style="margin-right: 8px;"> </i> Submit
+                            </button>
+                        </div>      
+                    </div>     
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="readImportant" data-toggle="modal" data-target="#Important"></button>
+        <div class="modal fade" id="Important" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content mediaCls">
+                    <div class="modal-header">
+                        <button style="color: red;font-size: 32px;" type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="text-align: center;text-align: center;font-size: 23px;">Payment Guidlines</h4>
+                    </div>
+                    <div class="modal-body">
+                        <section class="section_20">
+                            <div class="">
+                                <!-- <div class="main_heading main_heading_wbg">
+                                <h1 class="table_h">Payment Guidlines</h1>
+                                <span></span>
+                            </div> -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="faq_div">
+                                            <p>As per the guidelines of Indian Government Immigration Department, the Personal Data we collect from users are strictly used for the process of India e-Visa, which includes, applicants name, e-mail address, mailing address, credit card number and telephone number or any inquiries, we keep all these details totally confidential. We request our applicants to read the privacy Statement carefully before using our website.</p>
+                                            <ul class="faq_ul">
+                                                <li>“User’s” Personal Data</li>
+                                                <p>The data we collected from “Users”, is registered under Company database (like date/place of birth, passport number, visa issue and expiry date, supporting documents, phone and email address, permanent address, cookies, connection log, IP address, payment records etc), it is used for the completion of visa application, under the guidelines mentioned in the form as per the standards. Therefore, You are advised hereby to update yourself with the Privacy Policy of our site along with its information gathering procedure.
+                                                </p>
+                                                <li>No Cookies & identifiable Information Tracking </li>
+                                                <p>The personal Information, Users shared with our site is entirely confidential and neither shared or disclosed to anyone, nor to the third parties except (user has explicitly agreed to allow such actions). Also, sometimes some advertisements links reflects on other sites too, or it may use cookies, in that case, we are not at all responsible for that information, collected through the use of cookies. </p>
+                                                <p>We highly care and protect clients personal data, received us through the website from the <strong>loss, misuse, unauthorized access, disclosure, alteration or destruction</strong> or any other kind of online fraud.</p>
+                                                <li>Financial Transactions through the third party</li>
+                                                <p>To avail the facility of online payments on this site, we have integrated online payment tool. We accept payments through the Bank as Paypal pocket electronic services. To make our clients more comfortable we accept payments via credit cards, PayPal and direct online bank transfers too. The “Users”, Credit card, PayPal account details will be totally secured and transferred to our partners such as Paypal.com.
+                                                    <br />
+                                                    <br /> Apart from above all online payments/transactions of users authentication including credit cards processing are conducted through Secure <strong>Socket Layer/ Transport Layer Security technology.</strong> We have the security certificate, verified by Symantec, it is one of the the best commercially available encryption on the Internet.
+                                                    <br /><strong>Noto: For the third party payment gateway, we are not responsible for any privacy policies or practices.</strong>
+                                                </p>
+                                                <li>Policy Amendments</li>
+                                                <p>We have full right to do any changes or amendment on this site anytime. To make yourself updated, you are requested to visited it occasionally.</p>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer" style="text-align: center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="removeAppli" data-toggle="modal" data-target="#removeUser"></button>
+        <div class="modal fade" id="removeUser" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content mediaCls" style="position: initial;;width: 100%;">
+                    <div class="modal-header">
+                        <button style="color: red;font-size: 32px;" type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="text-align: center;text-align: center;font-size: 20px;color: orange;">Alert</h4>
+                    </div>
+                    <p style="position: relative;text-align: center;">Delete this User information</p>
+                    <div class="modal-footer" style="text-align: center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" id="delete_cnt_apli">Ok</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="emailVerifiedU" data-toggle="modal" data-target="#VerifiedU">Open Modal</button>
+        <div class="modal fade" id="VerifiedU" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" >
+                        <div class="row" class="emailPage">
+                            <div class="col-lg-12">
+                                <div class="login_div">
+                                    <h1 class="user_icon" style="text-align: center;">
+                                        <i class="fas fa-user"></i>
+                                        <i class="fas fa-key key"></i>
+                                    </h1>
+                                    <h2 class="text-center" style="margin: 15px 0px 20px 0px;">Login to your account</h2>
+                                    <article>
+                                        <span *ngIf="login_msg_sus" style="color: red">{{login_msg}}</span>
+                                    </article>
+                                    <form class="reply_form login">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="label_container">
+                                                    <label class="pull-left">Email <i class="fas fa-pencil-alt"></i></label>
+                                                </div>
+                                                <div class="element_container">
+                                                    <input type="text" title="Email" placeholder="Email" class="removeGmail" [ngClass]="{'borderColor': email.invalid && ( email.dirty || email.touched)}" required #email="ngModel" name="email" disabled [(ngModel)]="loginEmail" pattern="^([a-zA-Z0-9_.]+@[a-zA-Z0-9]+[.][.a-zA-Z]+)$" (focus)="cleanerrorEmail()" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="label_container">
+                                                    <label class="pull-left">Passowrd <i class="fas fa-unlock-alt"></i></label>
+                                                </div>
+                                                <div class="element_container">
+                                                    <input type="password" title="Password" class="removePassword disabledNot enable_white" placeholder="password" [ngClass]="{'borderColor': password.invalid && ( password.dirty || password.touched)}" #password="ngModel" name="password" [(ngModel)]="loginPassword" (keyup)="cleanerrorPass()" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div>
+                                                    <button type="submit" class="my_btn" style="background-color: #055ea5;" (click)="loginUser()">Login</button>
+                                                    <a class="forgot" (click)="forgot()" >Forgot Password <i class="fas fa-question-circle"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div *ngIf="process" class="preloader"> 
+                                <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+                                    <g>
+                                        <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+                                        <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+                                        </animateTransform>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="forgotnpage">
+                            <div class="col-lg-12" >
+                                <div class="login_div">
+                                    <h1 class="user_icon" style="text-align: center;"> 
+                                        <i class="fas fa-key"></i>
+                                        <i class="fas fa-question key"></i>
+                                    </h1>
+                                    <h2 class="text-center" style="margin: 15px 0px 20px 0px;">Forgot your Password</h2>
+                                    <span *ngIf="forgot_msg_sus" style="color: green">{{forgot_msg}}</span> 
+                                    <span *ngIf="forgot_msg_error" style="color: red">{{forgot_error_msg}}</span>   
+                                    <form id="forget" class="login">
+                                        <div class="label_container">
+                                            <label class="pull-left">Enter Your Email <i class="far fa-envelope"></i></label>
+                                        </div>
+                                        <div class="element_container">
+                                            <input type="text" title="Email" placeholder="Email" class="removeGmailForgot" disabled [ngClass]="{'borderColor': email.invalid && ( email.dirty || email.touched)}" required #email="ngModel" name="email" [(ngModel)]="EmailForgot" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" (focus)="cleanerrorForgot()" />
+                                        </div>    
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div>
+                                                    <button type="submit" (click)="emailForgotPg()"  class="my_btn">Submit</button>
+                                                        <a class="forgot" (click)="login()">Login <i class="fas fa-sign-in-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div *ngIf="process" class="preloader"> 
+                                <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+                                    <g>
+                                        <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+                                        <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+                                        </animateTransform>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="text-align: center;">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="popup_login_hide">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="otplVerifiedU" data-toggle="modal" data-target="#useroptVerifiedU">Open Modal</button>
+        <div class="modal fade" id="useroptVerifiedU" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" >   
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="login_div">
+                                    <h1 class="user_icon" style="text-align: center;">
+                                        <i class="fas fa-envelope"></i>
+                                    </h1>
+                                    <h2 class="text-center" style="margin: 15px 0px 20px 0px;">Enter OTP</h2>
+                                    <form  class="reply_form login">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="label_container">
+                                                    <label class="pull-left">OTP <i class="fas fa-pencil-alt"></i></label>
+                                                </div>
+                                                <article>
+                                                    <span *ngIf="otp_msg_sus" style="color: red">{{otp_msg}}</span>
+                                                    <span *ngIf="otp_msg_sus_user" style="color: green">{{otp_msg_sus_show}}</span>
+                                                </article>
+                                                <div class="element_container">
+                                                    <input type="text" title="Email" placeholder="OTP" class="removeOtp enable_white" [ngClass]="{'borderColor': email.invalid && ( email.dirty || email.touched)}" required #email="ngModel" name="email" [(ngModel)]="OTP" pattern="^([a-zA-Z0-9_.]+@[a-zA-Z0-9]+[.][.a-zA-Z]+)$" (keyup)="cleanerrorOtp()" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div>
+                                                    <button type="submit" class="my_btn" style="background-color: #055ea5;" (click)="otpSubmit()">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div *ngIf="process" class="preloader"> 
+                                <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+                                    <g>
+                                        <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+                                        <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+                                        </animateTransform>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="text-align: center">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="popupHideOtp">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</section>
+<div *ngIf="process" class="preloader"> 
+    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+        <g>
+            <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+            <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+            </animateTransform>
+        </g>
+    </svg>
+</div>
+

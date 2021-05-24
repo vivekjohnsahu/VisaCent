@@ -1,0 +1,59 @@
+.errorshow{
+    color: #345fbd;
+    position: relative;
+    font-size: 30px;
+    bottom: 2px;
+}
+.req_loader{
+    text-align: center;
+    position: relative;
+}
+
+.dataShow{
+    width: 50px;
+    text-align: center;
+    top: 9px;
+}
+.req_select
+{
+	position: relative;
+}
+.loader_first{
+	position: absolute;
+    width: 24px;
+    right: 18px;
+    top: 9px;
+}
+.chekd{
+    color: red
+}
+
+
+
+.table_2 p
+{
+    font-size: 16px;
+}
+.table_2 p,.table_2 label
+{
+    margin-bottom: 0px;
+}
+.table_2 .row
+{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.table_2 .row:nth-child(odd)
+{
+    background: #EDEFF1;
+}
+@media (min-width: 500px)
+{
+    .table_2 .col-sm-6 
+    {
+        width: 50%;
+        float:left;
+    }
+}
+
+

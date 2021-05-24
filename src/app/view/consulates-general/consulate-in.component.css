@@ -1,0 +1,67 @@
+
+.loader1 {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.8;
+    z-index: 99999;
+    overflow: hidden;
+    user-select: none;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+.loader1 img{
+    padding: 8% 0;
+    width: 24%;
+}
+.embassy_info_left a{
+    cursor: pointer;
+}
+.datafound{
+    position: relative;
+    font-size: 28px;
+    top: 108px;
+}
+.datafound{
+    position: relative;
+    /* text-align: center; */
+    font-size: 28px;
+    top: -22px;
+}
+.textareaaddress {
+    display: block;
+    overflow: hidden;
+    padding: 2px 7px 4px 7px;
+    width: 100%;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid #b5b5b5;
+    background-color: white;
+}
+.textarea{
+    display: block;
+    overflow: hidden;
+    padding: 2px 7px 4px 7px;
+    width: 100%;
+    min-height: 35px;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid #b5b5b5;
+    background-color: white;
+}
+.comments{
+    display: block;
+    overflow: hidden;
+    background: #4A90E2;
+    min-height: 100px;
+    width: 100%;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid #b5b5b5;
+    background-color: white;
+}
+.borderCls{
+    border: 1px solid red;
+}

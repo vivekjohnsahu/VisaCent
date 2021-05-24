@@ -1,0 +1,1319 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1" [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'" [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"></ng-progress>
+<section [hidden]="!pageHide" style="padding: 0px;">
+    <!-- <section *ngIf="navbar_pro==0" class="section_20" style="background-color:#EDEFF1;">
+        <div class="container">
+            <div class="ic">
+                <h1 class="text-center">
+                    <i class="fas fa-user"></i>
+                </h1>
+                <h2 style="text-align: center;margin-bottom: 12px;">Hi, {{user_name}}</h2>
+            </div>
+        </div>
+    </section> -->
+    <section class="section_20"  *ngIf="navbar_pro==1" style="background-color:#EDEFF1;padding:15px 0px;">
+        <div class="container">   
+            <div class="row us_in">
+                <div class="col-sm-3 col_left" style="padding-right:0px;">
+                    <div class="media">
+                        <div class="media-left ic">
+                            <h2>
+                            <span><i class="fas fa-user"></i></span> 
+                            </h2>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading" style="margin: 0px;margin-top: 5px;">Welcome <br />{{user_name}}</h4>
+                            <p style="margin: 0px;color: #005ea5;line-height: normal;font-size: 21px;font-family: 'Hammersmith One';">{{name}}</p>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-sm-9 col_left">
+                    <div>
+                        <ul class="profile_opt_ul">
+                            <li id="profile_option">
+                                <a>Choose Option <i class="fas fa-chevron-down"></i></a>
+                            </li>
+                            <div>
+                                <li><a class="dashboard" routerLink="/my-profile/dashboard" title="Dashboard"><span>Dashboard</span><i class="fas fa-tachometer-alt"></i></a></li>
+                                <li><a class="applications" routerLink="/my-profile/applications" title="Applications"><span>Applications</span> <i class="fas fa-shopping-bag"></i></a></li>
+                                <li><a class="update-profile" routerLink="/my-profile/update-profile" title="Update Profile"><span>Update Profile</span> <i class="far fa-user-circle"></i></a></li>
+                                <li><a class="change-password" routerLink="/my-profile/change-password" title="Change Password"><span>Change Password</span> <i class="fas fa-key"></i></a></li>
+                                <li><a (click)="logOut()" title="Logout"><span>Logout</span> <i class="fas fa-sign-out-alt"></i></a></li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section_20">
+        <div class="container">
+            <h2 class="order_head" style="text-align: center;">
+                <p style="font-size:25px;">Application Summary</p>
+            </h2>
+            <!-- <h3 style="margin-bottom: 12px;">Personal Details</h3> -->
+            <div class="row personal">
+                <div class="col-xs-6">
+                    <div class="row personal_inside">
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="left_label">
+                                <strong>Appli. Id</strong>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="right">
+                                <p>{{order_id}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row personal_inside">
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="left_label">
+                                <strong>Email</strong>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="right">
+                                <p>{{user_email}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row personal_inside">
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="left_label">
+                                <strong>Appli. Date</strong>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="right">
+                                <p>{{created_at}} (DD-MM-YYYY)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row personal_inside">
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="left_label">
+                                <strong>Mobile No</strong>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="right">
+                                <p *ngIf="order_phone!=null">{{order_phone}}</p>
+                                <p *ngIf="order_phone==null">NA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="row personal_inside">
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="left_label">
+                                <strong>Visa Country</strong>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="right">
+                                <p>{{visa_for_country}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row personal_inside">
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="left_label">
+                                <strong>Total Ammount</strong>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="right">
+                                <p>{{total_fee}} USD</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row personal_inside">
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="left_label">
+                                <strong>Payment Status</strong>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="right">
+                                <p style="color:#0dbc0d;text-transform: capitalize;">{{payment_status}} <i class="fas fa-check-circle"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section_20 form_section" style="padding:0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel with-nav-tabs panel-default detail_panel" style="border:none;">
+                        <div class="panel-heading applicant_tabs" style="border-bottom: none;">
+                            <ul class="nav nav-tabs">
+                                <li *ngFor="let field of applicants_dt; let i = index" (click)="applicant_next(i,field.id)">
+                                    <a style="background-color: white; color:#555" href="#tab1default" data-toggle="tab" class="appli_tab" id='appli_tab_a_{{i}}'>
+                                    Applicant {{i+1}}
+
+                                <span [hidden]="field.is_final_submit==1" id="appli_msg_{{field.id}}" class="uncomplete" style="color:#f7c316;">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>Incomplete</span>
+                                </span>
+                                <span [hidden]="field.is_final_submit==0" id="appli_msg1_{{field.id}}" class="uncomplete" style="color: #0dbc0d;">     <i class="fas fa-check-circle"></i>
+                                    <span style="background-color:#0dbc0d;">Complete</span>
+                                </span>
+                            </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="tab1default">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="">
+                                                <div class="panel-heading" style="background-color:transparent;">
+                                                    <ul class="nav nav-tabs" style="border-bottom: 1px solid #ddd;">
+                                                        <li><a style=" color: #005ea5;text-transform: capitalize;" class="user_ico"><i class="fas fa-user"></i> {{appliGivenName}}</a></li>
+                                                        <li id="active_User" class="active"><a href="#tab_detaile1" data-toggle="tab" style="color: #555;"> Detail 
+                                                    <span [hidden]="is_disabled=='1'" class="uncomplete" style="color:#f7c316;">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        <span>Incomplete</span>
+                                                    </span>
+                                                    <span [hidden]="is_disabled=='0'" class="uncomplete" style="color:#0dbc0d;">
+                                                        <i class="fas fa-check-circle"></i>
+                                                        <span style="background-color:#0dbc0d;">Complete</span>
+                                                    </span>
+                                                    </a>
+                                                        </li>
+                                                        <li id="remove_user" *ngIf="is_doc"><a href="#tab_detaile2" data-toggle="tab" style="color: #555;">  Document
+                                                    <span [hidden]="is_document=='1'" class="uncomplete" style="color:#f7c316;">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        <span>Incomplete</span>
+                                                    </span>
+                                                    <span [hidden]="is_document=='0'" class="uncomplete" style="color:#0dbc0d;">
+                                                        <i class="fas fa-check-circle"></i>
+                                                        <span style="background-color:#0dbc0d;">Complete</span>
+                                                    </span>
+                                                    </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="panel-body" id="scroll_appli" style="padding:15px 0px;">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade in active" id="tab_detaile1">
+
+                                                            <section class="section_20" style="padding-top:0px;">
+
+                                                                <ol class="checkout">
+                                                                    <li class="step" *ngFor="let step of progress_bar_step; let i=index" id='progress_bar_li_{{i}}'>
+                                                                        <span class="step-icon" style="cursor: no-drop;"></span>
+                                                                        <span class="step-label">Step {{i+1}}</span>
+                                                                    </li>
+                                                                </ol>
+                                                            </section>
+                                                            <hr />
+                                                            <form class="applicant_form" style="padding:0px 7px;">
+                                                                <div [hidden]="!general_information" class="app_genral">
+                                                                    <h3 class="de_head">General Information <i class="fas fa-info-circle"></i></h3>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3 col-xs-6" *ngFor="let appli of form_fields_general; let i = index">
+                                                                            <div class="label_container">
+                                                                                <label>{{appli.label}}</label>
+                                                                            </div>
+                                                                            <input *ngIf="(appli.field_text=='label')" class="form_field" type="text" id="{{appli.field_name}}" disabled value="{{appli.value}}" [ngClass]="{'req_blank_gen': appli.is_required==1}" style="cursor: no-drop; background-color: #ebebe4!important">
+                                                                            <input *ngIf="(appli.field_text=='text')" class="form_field" type="text" id="{{appli.field_name}}" value="{{appli.value}}" [disabled]="is_disabled=='1'" [ngClass]="{'disable_gray': is_disabled=='1', 'phn_a':appli.field_name=='phone', 'enable_white':is_disabled=='0','req_blank_gen': appli.is_required==1}">
+                                                                            <select *ngIf="(appli.field_name=='purpose_of_visit' && appli.data=='visit_purpose')" class="form_field selectNnt" id="{{appli.field_name}}" [disabled]="is_disabled=='1'" [ngClass]="{'disable_gray': is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                <option disabled value="0">Select</option>
+                                                                                <option *ngFor="let viasPur of visit_purpose" [selected]="viasPur.pupose==appli.value" value={{viasPur.pupose}}>{{viasPur.pupose}}</option>
+                                                                            </select>
+                                                                            <select *ngIf="(appli.field_text=='select' && appli.data=='country')" class="form_field selectNnt" id="{{appli.field_name}}" [disabled]="is_disabled=='1'" [ngClass]="{'disable_gray': is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                <option disabled value="0">Select</option>
+                                                                                <option value="28">Austraila</option>
+                                                                                <option value="72">China</option>
+                                                                                <option value="29">Canada</option>
+                                                                                <option value="30">India</option>
+                                                                                <option value="31">United Kingdom</option>
+                                                                                <option value="32">United States</option>
+                                                                                <option disabled>-----------</option>
+                                                                                <option *ngFor="let list of cntList" [selected]="list.id==appli.value" value={{list.id}}>{{list.name}}</option>
+                                                                            </select>
+                                                                            <select *ngIf="(appli.field_text=='select' && appli.field_name=='purpose_of_visa')" class="form_field selectNnt" id="{{appli.field_name}}" [disabled]="is_disabled=='1'" [ngClass]="{'disable_gray': is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                <option value="0">Select</option>
+                                                                                <option [selected]="'Tourist'==appli.value" value='Tourist'>Tourist</option>
+                                                                                <option [selected]="'Business'==appli.value" value='Business'>Business</option>
+                                                                            </select>
+                                                                            <select [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='select' && appli.field_name=='port_of_arrival')" class="form_field" id="port_of_arrival" [ngClass]="{'req_blank_gen': appli.is_required==1,'disable_gray': is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                <option value="0">Select</option>
+                                                                                <option *ngFor="let port of ports" [selected]="port.id==appli.value" value={{port.id}}>{{port.port_name}}</option>
+                                                                            </select>
+                                                                            <article class="test_article req_blank_gen_dt date" id="departure_date" *ngIf="(appli.field_text=='date' && appli.field_name=='departure_date')" [ngClass]="{'req_blank_gen_date': appli.is_required==1,'later_date':appli.data=='l','before_date':appli.data=='b', 'disable_gray': is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="day_departure_1 day_departure_date departure_day date day" [ngClass]="{'disable_gray': is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Day</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="departure_tes1_1 departure_mon date mon month_departure_date" [ngClass]="{'disable_gray': is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Month</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="year_departure_1 departure_year date year year_departure_date" [ngClass]="{'disable_gray': is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Year</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </article>
+                                                                            <article class="test_article req_blank_gen_dt date" id="arrival_date" *ngIf="(appli.field_text=='date' && appli.field_name=='arrival_date')" [ngClass]="{'req_blank_gen_date': appli.is_required==1,'later_date':appli.data=='l','before_date':appli.data=='b','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                <div>
+                                                                                    <select disabled class="day_tes1_1 day_arrival_date arrival_day date day" style="background-color: #ebebe4; cursor:no-drop;">
+                                                                                        <option value="0">Day</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select disabled class="month_tes1_1 month_arrival_date arrival_mon date mon" style="background-color: #ebebe4; cursor: no-drop;">
+                                                                                        <option value="0">Month</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select disabled class="year_1 arrival_year date year year_arrival_date" style="background-color: #ebebe4; cursor: no-drop;">
+                                                                                        <option value="0">Year</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </article>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 ">
+                                                                            <button *ngIf="is_disabled=='0'" type="button" class="my_btn width_auto" style="margin-top: 22px; margin-right: 12px;" (click)="saveAndExit()">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Save
+                                                                            </button>
+                                                                            <button *ngIf="next_btn_genral" type="button" class="my_btn my_btn_submit width_auto" style="width: 130px!important; margin-top: 22px;" (click)="check_form('req_blank_gen','1')">
+                                                                                Next
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div [hidden]="!applicant_informaction" class="app_info">
+                                                                    <h3 class="de_head">Applicant Information <i class="fas fa-user"></i></h3>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3 col-xs-6" *ngFor="let appli of form_fields_applicant">
+                                                                            <div *ngIf="(appli.field_name!='other_id' && appli.field_name!='other_identity_no' )">
+                                                                                <div class="label_container">
+                                                                                    <label>{{appli.label}}</label>
+                                                                                </div>
+                                                                                <div class="element_container" [ngClass]="{'phone_dropdown': appli.field_name=='phone'}">
+                                                                                    <select name="" [disabled]="is_disabled=='1'" id="ctnPhn_{{appli.field_name}}" class="flagEr form_field" *ngIf="appli.field_name=='phone'" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option *ngFor="let flag of flagDrop" [selected]="flag.value==appli.phone_code" value="{{flag.value}}">{{flag.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flag.country}}</option>
+                                                                                    </select>
+                                                                                    <input *ngIf="(appli.field_text=='text')" class="form_field" id="{{appli.field_name}}" type={{appli.field_text}} value={{appli.value}} [ngClass]="{'req_blank_info': appli.is_required==1, 'phn_a':appli.field_name=='phone', 'findEmail':appli.field_name=='email', 'giveName':appli.field_name=='givenname','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" [disabled]="is_disabled=='1'"/>                              
+                                                                                    <span *ngIf="(appli.field_name=='phone')" class="telMsg" style="color:red"></span>
+                                                                                    <input *ngIf="(appli.field_text=='label')" type="text" disabled value="{{appli.value}}" id="{{appli.field_name}}" style="cursor: no-drop;" class="disable_gray">
+                                                                                    
+                                                                                    <!-- [checked]="military_data.status=='Yes'" -->
+                                                                                    <div [ngClass]="{'borderRadio':appli.field_text=='radio'}">
+                                                                                        <input style="position: relative;margin: 10px;" [checked]="appli.value=='Yes'" name="criminalRecord" (click)="criminalRecordYes()" [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='radio')" type="radio" value="YES" id="{{appli.field_name}}" class="disable_gray">&ensp;&ensp;<label *ngIf="(appli.field_text=='radio')">YES</label>
+                                                                                        <input style="position: relative;margin: 10px;" [checked]="appli.value=='No' || appli.value==null" name="criminalRecord" (click)="criminalRecordNo()"  [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='radio')" type="radio" value="NO"  id="{{appli.field_name}}" class="disable_gray">&ensp;&ensp; <label *ngIf="(appli.field_text=='radio')">NO</label>
+                                                                                    </div>
+                                                                                    
+                                                                                    
+                                                                                    <select *ngIf="(appli.field_text=='select' && appli.data=='gender')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_info': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" [disabled]="is_disabled=='1'">
+                                                                                        <option value="Male" [selected]="appli.value=='Male'">Male</option>
+                                                                                        <option value="Female" [selected]="appli.value=='Female'">Female</option>
+                                                                                    </select>
+                                                                                    <select *ngIf="(appli.field_text=='select' && appli.data=='country')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_info': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" [disabled]="is_disabled=='1'">
+                                                                                        <option disabled value="0">Select</option>
+                                                                                        <option value="28">Austraila</option>
+                                                                                        <option value="72">China</option>
+                                                                                        <option value="29">Canada</option>
+                                                                                        <option value="30">India</option>
+                                                                                        <option value="31">United Kingdom</option>
+                                                                                        <option value="32">United States</option>
+                                                                                        <option disabled>-----------</option>
+                                                                                        <option *ngFor="let list of cntList" [selected]="list.id==appli.value" value={{list.id}}>{{list.name}}</option>
+                                                                                    </select>
+                                                                                    <select *ngIf="(appli.field_text=='select' && appli.field_name=='edu_qualification')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_info': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" [disabled]="is_disabled=='1'">
+                                                                                        <option value="">Select Education</option>
+                                                                                        <option [selected]="'BELOW MATRICULATION'==appli.value" value="BELOW MATRICULATION">BELOW MATRICULATION</option>
+                                                                                        <option [selected]="'GRADUATE'==appli.value" value="GRADUATE">GRADUATE</option>
+                                                                                        <option [selected]="'HIGHER SECONDARY'==appli.value" value="HIGHER SECONDARY">HIGHER SECONDARY</option>
+                                                                                        <option [selected]="'ILLITERATE'==appli.value" value="ILLITERATE">ILLITERATE</option>
+                                                                                        <option [selected]="'MATRICULATION'==appli.value" value="MATRICULATION">MATRICULATION</option>
+                                                                                        <option [selected]="'NA BEING MINOR'==appli.value" value="NA BEING MINOR">NA BEING MINOR</option>
+                                                                                        <option [selected]="'OTHERS'==appli.value" value="OTHERS">OTHERS</option>
+                                                                                        <option [selected]="'POST GRADUATE'==appli.value" value="POST GRADUATE">POST GRADUATE</option>
+                                                                                        <option [selected]="'PROFESSIONAL'==appli.value" value="PROFESSIONAL">PROFESSIONAL</option>
+                                                                                    </select>
+                                                                                    <select *ngIf="(appli.field_text=='select' && appli.field_name=='religion')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_info': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" [disabled]="is_disabled=='1'">
+                                                                                        <option value="">Select Religion</option>
+                                                                                        <option [selected]="'BAHAI'==appli.value" value="BAHAI">BAHAI</option>
+                                                                                        <option [selected]="'BUDDHISM'==appli.value" value="BUDDHISM">BUDDHISM</option>
+                                                                                        <option [selected]="'CHRISTIAN'==appli.value" value="CHRISTIAN">CHRISTIAN</option>
+                                                                                        <option [selected]="'HINDU'==appli.value" value="HINDU">HINDU</option>
+                                                                                        <option [selected]="'ISLAM'==appli.value" value="ISLAM">ISLAM</option>
+                                                                                        <option [selected]="'JAINISM'==appli.value" value="JAINISM">JAINISM</option>
+                                                                                        <option [selected]="'JUDAISM'==appli.value" value="JUDAISM">JUDAISM</option>
+                                                                                        <option [selected]="'OTHERS'==appli.value" value="OTHERS">OTHERS</option>
+                                                                                        <option [selected]="'PARSI'==appli.value" value="PARSI" selected="">PARSI</option>
+                                                                                        <option [selected]="'SIKH'==appli.value" value="SIKH">SIKH</option>
+                                                                                        <option [selected]="'ZOROASTRIAN'==appli.value" value="ZOROASTRIAN">ZOROASTRIAN</option>
+                                                                                    </select>
+                                                                                    <article class="test_article req_blank_info_dt date" id="{{appli.field_name}}" *ngIf="appli.field_text=='date'" [ngClass]="{'req_blank_info_date': appli.is_required==1,'later_date':appli.data=='l','before_date':appli.data=='b','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <div>
+                                                                                            <select [disabled]="is_disabled=='1'" class="day_{{appli.field_name}} date day" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                                <option value="0">Day</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <select [disabled]="is_disabled=='1'" class="month_{{appli.field_name}} date mon" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                                <option value="0">Month</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <select [disabled]="is_disabled=='1'" class="year_{{appli.field_name}} date year" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                                <option value="0">Year</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </article>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 col-sm-12">
+                                                                            <button type="button" class="my_btn width_auto" (click)="pre_form('1')" style="width: 130px!important; margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Previous
+                                                                            </button>
+                                                                            <button *ngIf="is_disabled=='0'" type="button" class="my_btn width_auto" style="margin-top: 22px; margin-right: 12px;" (click)="saveAndExit()">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Save
+                                                                            </button>
+                                                                            <button *ngIf="next_btn_applicant" type="button" (click)="check_form('req_blank_info','2')" class="my_btn my_btn_submit width_auto" style="width: 130px!important; margin-top: 22px;">
+                                                                                Next
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div [hidden]="!applicant_personal_informaction" class="app_personal">
+                                                                    <h3 class="de_head">Applicant Current Address <i class="fa fa-address-book"></i></h3>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3 col-xs-6" title="{{appli.label}}" *ngFor="let appli of form_fields_applicant_personal" [hidden]="(appli.label=='spouse_detail' || appli.field_name=='is_military' || appli.field_name=='marital_status')">
+                                                                            <div class="label_container">
+                                                                                <label [hidden]="(appli.label=='spouse_detail' || appli.field_name=='is_military' || appli.field_name=='marital_status')" class="lab1">{{appli.label}}</label>
+                                                                            </div>
+                                                                            <div class="element_container" *ngIf="appli.label!='spouse_detail' && appli.field_name!='is_military' && appli.field_name!='marital_status'" [ngClass]="{'phone_dropdown': appli.field_name=='emp_phone'}">
+                                                                                <select name="" [disabled]="is_disabled=='1'" id="ctnPhn_{{appli.field_name}}" class="flagEr form_field" *ngIf="appli.field_name=='emp_phone'" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option *ngFor="let flag of flagDrop" [selected]="flag.value==appli.phone_code"  value={{flag.value}}>{{flag.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flag.country}}</option>
+                                                                                </select>
+                                                                                <input [disabled]="is_disabled=='1'" type={{appli.field_text}} class="form_field" value={{appli.value}} id="{{appli.field_name}}" *ngIf="(appli.field_name=='emp_phone' && appli.label!='spouse_detail' && appli.label!='is_military')" [ngClass]="{'req_blank_appli_per': appli.is_required==1, 'phn_a':appli.field_name=='emp_phone','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" />
+
+                                                                                <input [disabled]="is_disabled=='1'" type={{appli.field_text}} value={{appli.value}} class="form_field" id="{{appli.field_name}}" *ngIf="(appli.field_text=='text' && appli.field_name!='emp_phone' && appli.label!='spouse_detail' && appli.label!='is_military')" [ngClass]="{'req_blank_appli_per': appli.is_required==1, 'phn_a':appli.field_name=='emp_phone','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" />
+                                                                                <select [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='select' && appli.data=='country')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_appli_per': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option disabled value="0">Select</option>
+                                                                                    <option value="28">Austraila</option>
+                                                                                    <option value="72">China</option>
+                                                                                    <option value="29">Canada</option>
+                                                                                    <option value="30">India</option>
+                                                                                    <option value="31">United Kingdom</option>
+                                                                                    <option value="32">United States</option>
+                                                                                    <option disabled>-----------</option>
+                                                                                    <option *ngFor="let list of cntList" [selected]="list.id==appli.value" value={{list.id}}>{{list.name}}</option>
+                                                                                </select>
+                                                                                <select [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='select' && appli.data=='')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_appli_per': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option value="">Select Occupation</option>
+                                                                                    <option [selected]="'AIR FORCE'==appli.value" value="AIR FORCE">AIR FORCE</option>
+                                                                                    <option [selected]="'BUSINESS PERSON'==appli.value" value="BUSINESS PERSON">BUSINESS PERSON</option>
+                                                                                    <option [selected]="'CAMERAMAN'==appli.value" value="CAMERAMAN">CAMERAMAN</option>
+                                                                                    <option [selected]="'CHARITY/SOCIAL WORKER'==appli.value" value="CHARITY/SOCIAL WORKER">CHARITY/SOCIAL WORKER</option>
+                                                                                    <option [selected]="'CHARTERED ACCOUNTANT'==appli.value" value="CHARTERED ACCOUNTANT">CHARTERED ACCOUNTANT</option>
+                                                                                    <option [selected]="'COLLEGE/UNIVERSITY TEACHER'==appli.value" value="COLLEGE/UNIVERSITY TEACHER">COLLEGE/UNIVERSITY TEACHER</option>
+                                                                                    <option [selected]="'DIPLOMAT'==appli.value" value="DIPLOMAT">DIPLOMAT</option>
+                                                                                    <option [selected]="'DOCTOR'==appli.value" value="DOCTOR">DOCTOR</option>
+                                                                                    <option [selected]="'ENGINEER'==appli.value" value="ENGINEER">ENGINEER</option>
+                                                                                    <option [selected]="'FILM PRODUCER'==appli.value" value="FILM PRODUCER">FILM PRODUCER</option>
+                                                                                    <option [selected]="'GOVERNMENT SERVICE'==appli.value" value="GOVERNMENT SERVICE">GOVERNMENT SERVICE</option>
+                                                                                    <option [selected]="'HOUSE WIFE'==appli.value" value="HOUSE WIFE">HOUSE WIFE</option>
+                                                                                    <option [selected]="'JOURNALIST'==appli.value" value="JOURNALIST">JOURNALIST</option>
+                                                                                    <option [selected]="'LABOUR'==appli.value" value="LABOUR">LABOUR</option>
+                                                                                    <option [selected]="'LAWYER'==appli.value" value="LAWYER">LAWYER</option>
+                                                                                    <option [selected]="'MEDIA'==appli.value" value="MEDIA">MEDIA</option>
+                                                                                    <option [selected]="'MILITARY'==appli.value" value="MILITARY">MILITARY</option>
+                                                                                    <option [selected]="'MISSIONARY'==appli.value" value="MISSIONARY">MISSIONARY</option>
+                                                                                    <option [selected]="'NAVY'==appli.value" value="NAVY">NAVY</option>
+                                                                                    <option [selected]="'NEWS BROADCASTER'==appli.value" value="NEWS BROADCASTER">NEWS BROADCASTER</option>
+                                                                                    <option [selected]="'OFFICIAL'==appli.value" value="OFFICIAL">OFFICIAL</option>
+                                                                                    <option [selected]="'OTHERS'==appli.value" value="OTHERS">OTHERS</option>
+                                                                                    <option [selected]="'POLICE'==appli.value" value="POLICE">POLICE</option>
+                                                                                    <option [selected]="'PRESS'==appli.value" value="PRESS">PRESS</option>
+                                                                                    <option [selected]="'PRIVATE SERVICE'==appli.value" value="PRIVATE SERVICE">PRIVATE SERVICE</option>
+                                                                                    <option [selected]="'PUBLISHER'==appli.value" value="PUBLISHER">PUBLISHER</option>
+                                                                                    <option [selected]="'REPORTER'==appli.value" value="REPORTER">REPORTER</option>
+                                                                                    <option [selected]="'RETIRED'==appli.value" value="RETIRED">RETIRED</option>
+                                                                                    <option [selected]="'SEA MAN'==appli.value" value="SEA MAN">SEA MAN</option>
+                                                                                    <option [selected]="'SELF EMPLOYED/ FREELANCER'==appli.value" value="SELF EMPLOYED/ FREELANCER">SELF EMPLOYED/ FREELANCER</option>
+                                                                                    <option [selected]="'STUDENT'==appli.value" value="STUDENT">STUDENT</option>
+                                                                                    <option [selected]="'TRADER'==appli.value" value="TRADER">TRADER</option>
+                                                                                    <option [selected]="'TV PRODUCER'==appli.value" value="TV PRODUCER">TV PRODUCER</option>
+                                                                                    <option [selected]="'UN-EMPLOYED'==appli.value" value="UN-EMPLOYED">UN-EMPLOYED</option>
+                                                                                    <option [selected]="'UN OFFICIAL'==appli.value" value="UN OFFICIAL">UN OFFICIAL</option>
+                                                                                    <option [selected]="'WORKER'==appli.value" value="WORKER">WORKER</option>
+                                                                                    <option [selected]="'WRITER'==appli.value" value="WRITER">WRITER</option>
+                                                                                </select>
+                                                                                <article class="test_article req_blank_appli_per_dt date" id="{{appli.field_name}}" *ngIf="appli.field_text=='date'" [ngClass]="{'req_blank_appli_per_date': appli.is_required==1,'later_date':appli.data=='l','before_date':appli.data=='b','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <div>
+                                                                                        <select [disabled]="is_disabled=='1'" class="day_{{appli.field_name}} date day" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                            <option value="0">Day</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <select [disabled]="is_disabled=='1'" class="month_{{appli.field_name}} date mon" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                            <option value="0">Month</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <select [disabled]="is_disabled=='1'" class="year_{{appli.field_name}} date year" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                            <option value="0">Year</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </article>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="is_military">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <p class="my_p">Are/were you in a Military/Semi-Military/Police/Security. Organization?
+                                                                                </p>
+                                                                                <div style="margin-top:17px;">
+                                                                                    <label>
+                                                                                        <input [disabled]="is_disabled=='1'" type="radio" [checked]="military_data.status=='Yes'" class="yes_militry" style="height:auto!important;" name="is_prev_org" value="YES" (click)="show_hide_prev_no()"> Yes
+                                                                                    </label> &nbsp;
+                                                                                    <label>
+                                                                                        <input [disabled]="is_disabled=='1'" type="radio" [checked]="military_data.status=='No'" class="no_militry" style="height:auto!important;" name="is_prev_org" value="NO" (click)="show_hide_prev_yes()"> No
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div *ngIf="Military_field">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-3 col-xs-6">
+                                                                                    <div class="label_container">
+                                                                                        <label style="margin-bottom: 5px;">Organization</label>
+                                                                                    </div>
+                                                                                    <div class="element_container">
+                                                                                        <input [disabled]="is_disabled=='1'" type="text" name="prev_emp_org" [(ngModel)]="organization" class="organization" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-3 col-xs-6">
+                                                                                    <div class="label_container">
+                                                                                        <label style="margin-bottom: 5px;">Designation</label>
+                                                                                    </div>
+                                                                                    <div class="element_container">
+                                                                                        <input [disabled]="is_disabled=='1'" type="text" name="prev_emp_desg" [(ngModel)]="designation" class="designation" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-3 col-xs-6">
+                                                                                    <div class="label_container">
+                                                                                        <label style="margin-bottom: 5px;">Rank <span class="spn_req rank"></span></label>
+                                                                                    </div>
+                                                                                    <div class="element_container">
+                                                                                        <input [disabled]="is_disabled=='1'" type="text" name="prev_emp_rank" [(ngModel)]="rank" class="rank" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-3 col-xs-6">
+                                                                                    <div class="label_container">
+                                                                                        <label style="margin-bottom: 5px;">Place of Posting <span class="spn_req prev_emp"></span></label>
+                                                                                    </div>
+                                                                                    <div class="element_container">
+                                                                                        <input [disabled]="is_disabled=='1'" type="text" name="prev_emp_post_place" [(ngModel)]="placeOfPosting" class="prev_emp" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <br>
+
+                                                                    <div *ngIf="marital_status_spo">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-3 col-xs-6">
+                                                                                <label>Marital Status</label>
+                                                                                <select [disabled]="is_disabled=='1'" class="Married_pr" (change)="show_sp_detail()" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option value='Single'>Single</option>
+                                                                                    <option value='Married'>Married</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div *ngIf="is_show_sp_detail" class="tr_sp_hide" style="clear: both;">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-3 col-xs-6">
+                                                                                    <div class="label_container">
+                                                                                        <label>Spouse's Name</label>
+                                                                                    </div>
+                                                                                    <div class="element_container">
+                                                                                        <input [disabled]="is_disabled=='1'" type="text" [(ngModel)]="spouseName" class="spouseName" name="spouseName" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-3 col-xs-6">
+                                                                                    <div class="label_container">
+                                                                                        <label>pouse's Place of birth</label>
+                                                                                    </div>
+                                                                                    <div class="element_container">
+                                                                                        <input [disabled]="is_disabled=='1'" type="text" [(ngModel)]="spousePlaveBir" name="spousePlaveBir" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-3 col-xs-6">
+                                                                                    <div class="label_container">
+                                                                                        <label>Spouse's Nationality</label>
+                                                                                    </div>
+                                                                                    <div class="element_container">
+                                                                                        <select [disabled]="is_disabled=='1'" id="spouse_Nationality" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                            <option disabled value="0">Select</option>
+                                                                                            <option value="28">Austraila</option>
+                                                                                            <option value="72">China</option>
+                                                                                            <option value="29">Canada</option>
+                                                                                            <option value="30">India</option>
+                                                                                            <option value="31">United Kingdom</option>
+                                                                                            <option value="32">United States</option>
+                                                                                            <option disabled>-----------</option>
+                                                                                            <option *ngFor="let list of cntList" [selected]="list.id==sp_nationality" value={{list.id}}>{{list.name}}</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-3 col-xs-6">
+                                                                                    <div class="label_container">
+                                                                                        <label>Spouse's Prev. Nationality</label>
+                                                                                    </div>
+                                                                                    <div class="element_container">
+                                                                                        <select [disabled]="is_disabled=='1'" id="Prev_Nationality" class="form_field" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                            <option disabled value="0">Select</option>
+                                                                                            <option value="28">Austraila</option>
+                                                                                            <option value="72">China</option>
+                                                                                            <option value="29">Canada</option>
+                                                                                            <option value="30">India</option>
+                                                                                            <option value="31">United Kingdom</option>
+                                                                                            <option value="32">United States</option>
+                                                                                            <option disabled>-----------</option>
+                                                                                            <option *ngFor="let list of cntList" [selected]="list.id==sp_prev_nationality" value={{list.id}}>{{list.name}}</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row" style="clear: both;">
+                                                                        <div class="col-md-12 col-sm-12">
+                                                                            <button type="button" (click)="pre_form('2')" class="my_btn width_auto" style="width: 130px!important; margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Previous
+                                                                            </button>
+                                                                            <button *ngIf="is_disabled=='0'" type="button" (click)="saveAndExit()" class="my_btn width_auto" style="margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Save
+                                                                            </button>
+                                                                            <button type="button" *ngIf="next_btn_per_info" (click)="check_form('req_blank_appli_per','3')" class="my_btn my_btn_submit width_auto" style="width: 130px!important; margin-top: 22px;">
+
+                                                                                Next
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div [hidden]="!applicant_father_informaction" class="app_father">
+                                                                    <h3 class="de_head">Father Detail Information <i class="far fa-id-card"></i></h3>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3 col-xs-6" *ngFor="let appli of form_fields_father_detail">
+                                                                            <div class="label_container">
+                                                                                <label>{{appli.label}}</label>
+                                                                            </div>
+                                                                            <div class="element_container">
+                                                                                <input [disabled]="is_disabled=='1'" type={{appli.field_text}} value={{appli.value}} class="form_field" id="{{appli.field_name}}" *ngIf="!(appli.field_text!='text' || appli.label=='spouse_detail' || appli.label=='is_military')" [ngClass]="{'req_blank_father': appli.is_required==1, 'phn_a':appli.field_name=='phone','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" />
+                                                                                <select [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='select' && appli.data=='country')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_father': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option disabled value="0">Select</option>
+                                                                                    <option value="28">Austraila</option>
+                                                                                    <option value="72">China</option>
+                                                                                    <option value="29">Canada</option>
+                                                                                    <option value="30">India</option>
+                                                                                    <option value="31">United Kingdom</option>
+                                                                                    <option value="32">United States</option>
+                                                                                    <option disabled>-----------</option>
+                                                                                    <option *ngFor="let list of cntList" [selected]="list.id==appli.value" value={{list.id}}>{{list.name}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <article class="test_article req_blank_father_dt date" id="{{appli.field_name}}" *ngIf="appli.field_text=='date'" [ngClass]="{'req_blank_father_date': appli.is_required==1,'later_date':appli.data=='l','before_date':appli.data=='b'}">
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="day_{{appli.field_name}} date day" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Day</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="month_{{appli.field_name}} date mon" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Month</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="year_{{appli.field_name}} date year" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Year</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </article>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3>Mother Detail Information <i class="far fa-id-card"></i></h3>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3 col-xs-6" *ngFor="let appli of form_fields_mother_detail">
+                                                                            <div class="label_container">
+                                                                                <label>{{appli.label}}</label>
+                                                                            </div>
+                                                                            <div class="element_container">
+                                                                                <input [disabled]="is_disabled=='1'" type={{appli.field_text}} value={{appli.value}} class="form_field" id="{{appli.field_name}}" *ngIf="!(appli.field_text!='text' || appli.label=='spouse_detail' || appli.label=='is_military')" [ngClass]="{'req_blank_father': appli.is_required==1, 'phn_a':appli.field_name=='phone','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" />
+                                                                                <select [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='select' && appli.data=='country')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_father': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option disabled value="0">Select</option>
+                                                                                    <option value="28">Austraila</option>
+                                                                                    <option value="72">China</option>
+                                                                                    <option value="29">Canada</option>
+                                                                                    <option value="30">India</option>
+                                                                                    <option value="31">United Kingdom</option>
+                                                                                    <option value="32">United States</option>
+                                                                                    <option disabled>-----------</option>
+                                                                                    <option *ngFor="let list of cntList" [selected]="list.id==appli.value" value={{list.id}}>{{list.name}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <article class="test_article req_blank_mother_dt date" id="{{appli.field_name}}" *ngIf="appli.field_text=='date'" [ngClass]="{'req_blank_father_date': appli.is_required==1,'later_date':appli.data=='l','before_date':appli.data=='b'}">
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="day_{{appli.field_name}} date day" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Day</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="month_{{appli.field_name}} date mon" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Month</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="year_{{appli.field_name}} date year" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Year</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </article>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-8 col-sm-3">
+                                                                            <button type="button" (click)="pre_form('3')" class="my_btn width_auto" style="width: 130px!important; margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Previous
+                                                                            </button>
+                                                                            <button *ngIf="is_disabled=='0'" type="button" (click)="saveAndExit()" class="my_btn width_auto" style="margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Save
+                                                                            </button>
+                                                                            <button *ngIf="next_father_btn" type="button" (click)="check_form('req_blank_father','4')" class="width: 130px!important; my_btn my_btn_submit width_auto" style="width: 130px!important; margin-top: 22px;">
+
+                                                                                Next
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div [hidden]="!applicant_reference_informaction" class="app_ref">
+                                                                    <h3 class="de_head">Reference Information <i class="far fa-id-card"></i></h3>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3 col-xs-6" *ngFor="let appli of form_fields_reference">
+                                                                            <div class="label_container">
+                                                                                <label>{{appli.label}}</label>
+                                                                            </div>
+                                                                            <div class="element_container phone_dropdown">
+                                                                                <select name="" [disabled]="is_disabled=='1'" id="ctnPhn_{{appli.field_name}}" class="flagEr form_field" *ngIf="(appli.field_name=='ref_phone_in' || appli.field_name=='your_contry_phone')" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option *ngFor="let flag of flagDrop" [selected]="flag.value==appli.phone_code" value="{{flag.value}}">{{flag.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flag.country}}}</option>
+                                                                                </select>
+                                                                                <input [disabled]="is_disabled=='1'" type={{appli.field_text}} value={{appli.value}} class="form_field" id="{{appli.field_name}}" *ngIf="!(appli.field_text!='text' || appli.label=='spouse_detail' || appli.label=='is_military')" [ngClass]="{'req_blank_reference': appli.is_required==1, 'phn_a_val':appli.field_name=='your_contry_phone', 'phn_a':appli.field_name=='ref_phone_in', 'referenceNumber': appli.field_name=='ref_phone_in','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" />
+                                                                                <select [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='select' && appli.data=='country')" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_reference': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option disabled value="0">Select</option>
+                                                                                    <option value="28">Austraila</option>
+                                                                                    <option value="72">China</option>
+                                                                                    <option value="29">Canada</option>
+                                                                                    <option value="30">India</option>
+                                                                                    <option value="31">United Kingdom</option>
+                                                                                    <option value="32">United States</option>
+                                                                                    <option disabled>-----------</option>
+                                                                                    <option *ngFor="let list of cntList" [selected]="list.id==appli.value" value={{list.id}}>{{list.name}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <article class="test_article req_blank_reference_dt date" id="{{appli.field_name}}" *ngIf="appli.field_text=='date'" [ngClass]="{'req_blank_reference_date': appli.is_required==1,'later_date':appli.data=='l','before_date':appli.data=='b','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="day_{{appli.field_name}} date day" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Day</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="month_{{appli.field_name}} date mon" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Month</option>
+
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <select [disabled]="is_disabled=='1'" class="year_{{appli.field_name}} date year" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        <option value="0">Year</option>
+
+                                                                                    </select>
+                                                                                </div>
+                                                                            </article>
+                                                                            <div *ngIf="(appli.field_text=='textarea')" id="{{appli.field_name}}">
+                                                                                <textarea autosize style="width: 100%;" [disabled]="is_disabled=='1'" name="comment" value="{{appli.value}}" class="form_field" id="{{appli.field_name}}" [ngClass]="{'req_blank_reference': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}"></textarea>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 col-sm-12">
+                                                                            <button type="button" (click)="pre_form('4')" class="my_btn width_auto" style="width: 130px!important; margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Previous
+                                                                            </button>
+                                                                            <button *ngIf="is_disabled=='0'" type="button" (click)="saveAndExit()" class="my_btn width_auto" style="margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Save
+                                                                            </button>
+                                                                            <button *ngIf="next_refe_btn" type="button" (click)="check_form('req_blank_reference','5')" class="my_btn my_btn_submit width_auto" style="width: 130px!important; margin-top: 22px;">
+
+                                                                                Next
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div [hidden]="!applicant_suought_infor" class="app_shought">
+                                                                    <div>
+                                                                        <h3 class="de_head">Visa Sought Information <i class="far fa-id-card"></i></h3>
+                                                                        <div class="row sought_row">
+                                                                            <div class="col-sm-3 col-xs-6" *ngFor="let appli of form_fields_visa_sought" [hidden]="(appli.label=='hospital_detail' || appli.label=='company_detail')">
+                                                                                <div class="label_container">
+                                                                                    <label [hidden]="(appli.label=='hospital_detail' || appli.label=='company_detail')" [ngClass]="{'lab_hid':appli.field_name=='hospital_detail','lab_hid2':appli.field_name=='company_detail'}">{{appli.label}}</label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='text')" value={{appli.value}} class="form_field" id="{{appli.field_name}}" type={{appli.field_text}} [ngClass]="{'req_blank_suought': appli.is_required==1, 'phn_a':appli.field_name=='phone','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" />
+                                                                                </div>
+                                                                                <select [disabled]="is_disabled=='1'" *ngIf="(appli.field_text=='select')" class="form_field" id="exit_port" [ngClass]="{'req_blank_suought': appli.is_required==1,'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <option *ngFor="let port of ports" [selected]="port.id==appli.value" value={{port.id}}>{{port.port_name}}</option>
+                                                                                </select>
+                                                                                <article class="test_article req_blank_suought_dt date" id="{{appli.field_name}}" *ngIf="(appli.field_text=='date' && appli.field_name=='last_visited_date_of_issue')" [ngClass]="{'req_blank_suought_date': appli.is_required==1,'later_date':appli.data=='l','before_date':appli.data=='b','disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                    <div>
+                                                                                        <select [disabled]="is_disabled=='1'" class="day_{{appli.field_name}} date day" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                            <option value="0">Day</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <select [disabled]="is_disabled=='1'" class="month_{{appli.field_name}} date mon" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                            <option value="0">Month</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <select [disabled]="is_disabled=='1'" class="year_{{appli.field_name}} date year" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                            <option value="0">Year</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </article>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="hospital_detail!==0">
+                                                                        <h3 class="de_head">Detail of the Hospital </h3>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-3 col-xs-6">
+                                                                                <div class="lable_container">
+                                                                                    <label>Name of the Hospital</label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input [disabled]="is_disabled=='1'" type="text" [(ngModel)]="hospitalName" name="hospital_name" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-3 col-xs-6">
+                                                                                <div class="lable_container">
+                                                                                    <label>Address of the Hospital</label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input [disabled]="is_disabled=='1'" type="text" [(ngModel)]="hospital_address" name="hospital_address" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-3 col-xs-6">
+                                                                                <div class="lable_container">
+                                                                                    <label>State</label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input [disabled]="is_disabled=='1'" type="text" [(ngModel)]="hospital_state" name="hospital_state" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-3 col-xs-6">
+                                                                                <div class="lable_container">
+                                                                                    <label>District</label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input [disabled]="is_disabled=='1'" type="text" [(ngModel)]="hospital_district" name="hospital_district" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-3 col-xs-6">
+                                                                                <div class="lable_container">
+                                                                                    <label>Phone</label>
+                                                                                </div>
+                                                                                <div class="element_container phone_dropdown">
+                                                                                    <select name="" [disabled]="is_disabled=='1'" id="ctnPhn_hospital" class="flagEr" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                        
+                                                                                        <option *ngFor="let flag of flagDrop" [selected]="hospital_phone_code==flag.value" value="{{flag.value}}">{{flag.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flag.country}}</option>
+                                                                                    </select>
+                                                                                    <input [disabled]="is_disabled=='1'" class="phn_a" type="text" [(ngModel)]="hospital_phone" name="hospital_phone" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" style="padding-left:67px;">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-3 col-xs-6">
+                                                                                <div class="lable_container">
+                                                                                    <label>Type of medical treatment</label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input [disabled]="is_disabled=='1'" type="text" [(ngModel)]="type_of_treatment" name="type_of_treatment">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="company_detail!==0" class="row">
+                                                                        <div>
+                                                                            <h3 style="margin-left: 19px;margin-top:16px;">Detail of Company/Organization </h3>
+                                                                            <div class="col-md-3">
+                                                                                <div class="label_container">
+                                                                                    <label>Name </label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input type="text" [disabled]="is_disabled=='1'" [(ngModel)]="com_name" class="com_name" name="com_name" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="label_container">
+                                                                                    <label>Address </label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input type="text" [disabled]="is_disabled=='1'" [(ngModel)]="com_address" class="com_address" name="com_address" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="label_container">
+                                                                                    <label>Phone </label>
+                                                                                </div>
+                                                                                <div class="element_container phone_dropdown">
+                                                                                    <select name="" [disabled]="is_disabled=='1'" id="ctnPhn_company" class="flagEr" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">  
+                                                                                        <option *ngFor="let flag of flagDrop" [selected]="com_phone_code==flag.value" value="{{flag.value}}">{{flag.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flag.country}}</option>
+                                                                                    </select>
+                                                                                    <input type="text" [disabled]="is_disabled=='1'" [(ngModel)]="com_phone" class="com_phone" name="com_phone" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}" style="padding-left:67px;">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="label_container">
+                                                                                    <label>Website</label>
+                                                                                </div>
+                                                                                <div class="element_container">
+                                                                                    <input type="text" [disabled]="is_disabled=='1'" [(ngModel)]="com_website" name="com_website" [ngClass]="{'disable_gray':is_disabled=='1','enable_white':is_disabled=='0'}">
+                                                                                </div>
+                                                                                <input type="hidden" name="nature_of_business">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 col-sm-12">
+                                                                            <button type="button" (click)="pre_form('5')" class="my_btn width_auto" style="width: 130px!important; margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Previous
+                                                                            </button>
+                                                                            <button *ngIf="is_disabled=='0'" type="button" (click)="saveAndExit()" class="my_btn width_auto" style="margin-top: 22px; margin-right: 12px;">
+                                                                                <i class="" style="margin-right: 8px;"> </i> Save
+                                                                            </button>
+                                                                            <button type="button" *ngIf="next_btn_suought && is_disabled=='0'" (click)="check_form('req_blank_suought','6')" class="my_btn my_btn_submit width_auto" style="width: 130px!important; margin-top: 22px;">
+                                                                                Next
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <br>
+                                                                </div>
+                                                                <br>
+                                                                <div class="row" *ngIf="submit_btn_show" style="text-align: center">
+                                                                    <label>
+                                                                        <input type="checkbox" (change)="chekInfo()" id="chekInfo">
+                                                                        <span> I have varified that all infomation are correct </span>
+                                                                    </label>
+                                                                    <div class="col-md-12 col-sm-3">
+                                                                        <button disabled type="button" id="sub_btn" (click)="submit_form()" class="btn_sb my_btn my_btn_submit width_auto" style="cursor: no-drop; width: 130px!important; margin-top: 22px;">
+
+                                                                            Submit
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="tab_detaile2">
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-3 file_col" *ngFor="let appli of document; let i = index">
+                                                                        <label id="fieldName{{i}}" *ngIf="appli.is_required==1">{{appli.label}}<span style="color:red">*</span></label>
+                                                                    <label id="fieldName{{i}}" *ngIf="appli.is_required==0">{{appli.label}}</label>
+                                                                    <div class="file_upload" id="img_border_{{i}}" style="position:relative;">
+                                                                        <img class="img-responsive a" (click)="viewimage('img',i)" id="fileListUrl_img_{{i}}" [ngClass]="{'fileUrl' : appli.value==null || appli.value=='' || appli.filetype=='pdf'}" [src]="appli.value" />
+                                                                        <img class="img-responsive b" (click)="changeimage(i)" id="fileListUrl_blank_{{i}}" [ngClass]="{'fileUrlDft' : appli.value!=null && appli.value!=''}" src="assets/images/file.png" />
+                                                                        <label id="fileListUrl_pdf_{{i}}" [ngClass]="{'fileUrlPdf' : appli.filetype!='pdf'}"><a (click)="viewimage('pdf',appli.value)">View pdf file</a></label>
+                                                                        <input type="file" id="file_{{i}}" (change)="fileChange($event,i)" placeholder="Upload file" accept=".jpg,.jpeg,.png,.pdf" class="inputfile">
+                                                                        <input type="hidden" id="appli_doc_{{i}}" value="{{appli.value}}">
+                                                                        <input type="hidden" id="flg_appli_doc_{{i}}" class="cls_appli_doc" [ngClass]="{'docreq':appli.is_required==1}" value="{{appli.value}}">
+                                                                        <span id="apliImgupload_{{i}}" style="color: #8cff8c;display: block;bottom: 5px;position: absolute;z-index: 5;"></span>
+                                                                        <span [hidden]="is_document==1" style="color:green;font-size:20px;cursor: pointer;" (click)="specificationsOpen(appli.label)">specifications</span>
+                                                                    </div><br />
+                                                                    <button [hidden]="is_document==1" type="button" (click)="changeimage(i)" class="my_btn" style="width: 107px; margin-top: 22px; margin-right: 12px;padding-left: 0px;padding-right: 0px;">
+                                                                        <i class="far fa-file" aria-hidden="true" style="margin-right: 8px;"> </i> Select File
+                                                                    </button>
+                                                                    <button [hidden]="is_document==1" disabled type="button" (click)="docUpload(i,appli.field_name)" class="my_btn btn_disabled" id="btn_dis_{{i}}" style="width: 107px; margin-top: 22px; margin-right: 12px;padding-left: 0px;padding-right: 0px;">
+                                                                        <i class="fa fa-upload" aria-hidden="true" style="margin-right: 8px;"> </i>
+                                                                        <span *ngIf="appli.value==null || appli.value==''" class="btn_upload_txt_{{i}}">Upload</span>
+                                                                        <span *ngIf="appli.value!=null && appli.value!=''" class="btn_upload_txt_{{i}}">Re-Upload</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                            <div *ngIf="is_all_docuemnt==1 && is_document==0" class="row" style="text-align: center" id="hideDocumentInfo">
+                                                                <span id="doc_err_msg" style="display:none"></span>
+                                                                <br />
+                                                                <span id="document_sus_msg" style="display:none;font-size: 17px;"></span>
+                                                                <br />
+                                                                <label>
+                                                                    <input type="checkbox" (change)="DocumentChekInfo()" id="DocumentInfo1">
+                                                                    <span>&nbsp; I have verified that all uploaded documents are correct</span>
+                                                                </label>
+                                                                <div class="col-md-12 col-sm-3">
+                                                                    <button disabled type="button" id="sub_btn_doc" (click)="submitDocument()" class="my_btn my_btn_submit width_auto" style="cursor: no-drop; width: 130px!important; margin-top: 22px; background-color: #5aa2d8;">
+                                                                        Submit
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div *ngIf="process" style="width: 100%;height: 100%;background-color: #000000bf;position: fixed;z-index: 50;left: 0px;top: 0px;">
+        <p style="color: white;text-align: center;margin-top: 235px;font-size: 40px;">Processing..</p>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="modal_btn" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color: red; text-align: center; font-size: 20px;">Warning</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-align: center;">You have not submitted information for this applicant. Information may be lost if you do not save infomation. Do you want to continue?</p>
+                    </div>
+                    <div class="modal-footer" style="text-align: center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="cnt_apli">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="submit_modal_btn" data-toggle="modal" data-target="#sub_Modal">Open Modal</button>
+        <div class="modal fade" id="sub_Modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color: orange; text-align: center;font-size: 20px;">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p _ngcontent-c3="" style="text-align: center;">You will not be able to change information of this applicant once finally submitted.
+                            <p style="text-align: center; font-size: 22px;"> <strong _ngcontent-c3="">Application ID: {{order_id}}</strong>
+                                <p style="text-align: center;">You can check visa status from Visa Status option of website using Application ID, applicant’s and passport.</p>
+                    </div>
+                    <div class="modal-footer" style="text-align: center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="submit_cnt_apli">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="validExtension" data-toggle="modal" data-target="#validEx">Open Modal</button>
+        <div class="modal fade" id="validEx" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color: orange; text-align: center">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-align: center;">{{fileSizeAndExt}}</p>
+                    </div>
+                    <div class="modal-footer" style="text-align: center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="popupImage" data-toggle="modal" data-target="#popupImg">Open Modal</button>
+        <div class="modal fade" id="popupImg" role="dialog">
+            <div class="modal-dialog pdf" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal_body" id="viewPdf" style="padding-left: 15px; padding-right: 15px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-info btn-lg hidden" id="valSucSave" data-toggle="modal" data-target="#SucSave">Open Modal</button>
+        <div class="modal fade" id="SucSave" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color: black; text-align: center; font-size: 20px">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-align: center; color: black">{{suc_alert_msg}}</p>
+                        <p style="text-align: center; color: red">{{error_alert_msg}}</p>
+                    </div>
+                    <div class="modal-footer" style="text-align: center">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                        <!-- <button type="button" class="btn btn-info" data-dismiss="modal" id="popupExitId">Ok</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+            <button type="button" class="btn btn-info btn-lg hidden" id="specificationsOpen" data-toggle="modal" data-target="#specificationsPopup">Open Modal</button>
+            <div class="modal fade" id="specificationsPopup" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" style="color: black; text-align: center; font-size: 20px">Guidlines For {{specifiName}}</h4>
+                             <div class="photo_guidline" id="SpecificationsPhoto">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Without border.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Taken within the last 6 months.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Full face without headgear.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The facial image must be from chin to crown.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Only studio taken photo will be accepted, scanned photos are Not ACCEPTABLE.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Photo uploaded must have "White" background.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li style="color:red;"><i class="fas fa-chevron-right"></i> A Selfie photo is not acceptable.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/persone1.jpg" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/persone2.jpg" class="img-responsive" />
+                                </aside>
+                            </div>
+                            <div class="photo_guidline" id="SpecificationsPassport">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Scan only the first page (or first two pages) of passport.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Make sure that all information is clearly visible/readable.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The scanned page should be scanned based on original passport and in full colored only.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Scanned black and white photocopy of passport is not accepted.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded passport which  is not following the specification may be rejected.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Please retain the original size upon scanning.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/persone3.jpg" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/persone3.jpg" class="img-responsive" />
+                                </aside>
+                            </div>
+                            <div class="photo_guidline" id="SpecificationsPassportFrontPage">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Scan only the first page (or first two pages) of passport.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Make sure that all information is clearly visible/readable.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The scanned page should be scanned based on original passport and in full colored only.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Scanned black and white photocopy of passport is not accepted.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded passport which  is not following the specification may be rejected.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Please retain the original size upon scanning.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/default1.png" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/default1.png" class="img-responsive" />
+                                </aside>
+                            </div>
+                            <div class="photo_guidline" id="SpecificationsPassportBackPage">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Scan only the first page (or first two pages) of passport.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Make sure that all information is clearly visible/readable.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The scanned page should be scanned based on original passport and in full colored only.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Scanned black and white photocopy of passport is not accepted.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded passport which  is not following the specification may be rejected.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Please retain the original size upon scanning.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/default1.png" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/default1.png" class="img-responsive" />
+                                </aside>
+                            </div>
+                            <div class="photo_guidline" id="SpecificationsOther">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Scan only the first page (or first two pages) of passport.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Make sure that all information is clearly visible/readable.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The scanned page should be scanned based on original passport and in full colored only.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Scanned black and white photocopy of passport is not accepted.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded passport which  is not following the specification may be rejected.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Please retain the original size upon scanning.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/default1.png" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/default1.png" class="img-responsive" />
+                                </aside>
+                            </div>
+                            <div class="photo_guidline" id="SpecificationsBusinessCard">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Scan only the first page (or first two pages) of passport.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Make sure that all information is clearly visible/readable.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The scanned page should be scanned based on original passport and in full colored only.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Scanned black and white photocopy of passport is not accepted.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded passport which  is not following the specification may be rejected.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Please retain the original size upon scanning.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/default1.png" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/default1.png" class="img-responsive" />
+                                </aside>
+                            </div>
+                            <div class="photo_guidline" id="SpecificationsTravelItinerary">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Scan only the first page (or first two pages) of passport.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Make sure that all information is clearly visible/readable.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The scanned page should be scanned based on original passport and in full colored only.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Scanned black and white photocopy of passport is not accepted.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded passport which  is not following the specification may be rejected.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Please retain the original size upon scanning.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/default1.png" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/default1.png" class="img-responsive" />
+                                </aside>
+                            </div>
+                            <div class="photo_guidline" id="SpecificationsFlightItinerary">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Scan only the first page (or first two pages) of passport.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Make sure that all information is clearly visible/readable.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The scanned page should be scanned based on original passport and in full colored only.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Scanned black and white photocopy of passport is not accepted.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded passport which  is not following the specification may be rejected.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Please retain the original size upon scanning.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/default1.png" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/default1.png" class="img-responsive" />
+                                </aside>
+                            </div>
+                            <div class="photo_guidline" id="SpecificationsHotelBooking">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Scan only the first page (or first two pages) of passport.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Make sure that all information is clearly visible/readable.</li>
+                                    <li><i class="fas fa-chevron-right"></i> The scanned page should be scanned based on original passport and in full colored only.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Scanned black and white photocopy of passport is not accepted.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded passport which  is not following the specification may be rejected.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Please retain the original size upon scanning.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Uploaded photo's which is not following the specification may be rejected.</li>
+                                    <li>
+                                        <strong>Kindly ensure that the uploaded image is as per the specification and is clear to avoid any possibilities of rejection and issues at the entry/exit points in your current country and Malaysia!</strong>
+                                    </li>
+                                </ul>
+                                <aside>
+                                    <img src="assets/images/default1.png" class="img-responsive" style="width: 300px;" />
+                                </aside>
+                                
+                                <aside style="margin-top:20px;">
+                                    <img src="assets/images/default1.png" class="img-responsive" />
+                                </aside>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="text-align: center">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<div *ngIf="Error_order_not_found" style="color: red;font-size: 30px;text-align: center;top: 58px;position: relative;">{{Error_order_not_found_mdg}}</div>
+<div *ngIf="!processmy" class="preloader"> 
+    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+        <g>
+            <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+            <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+            </animateTransform>
+        </g>
+    </svg>
+</div> 

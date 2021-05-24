@@ -1,0 +1,134 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+[speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'"
+[color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+<section class="section_30" [hidden]="!pageHide">
+    <div class="container">
+        <div class="main_heading main_heading_wbg">
+            <h1>News</h1>
+            <span style="margin-bottom:30px;"></span>
+        </div>
+        <div class="row" style="position: relative;top: 6px;">
+            <div class="col-md-8">
+                <div class="left_main_div">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="info_container" *ngFor="let newsList of newsData">
+                                <ul>
+                                    <li style="background-color:#2cc5f0;" class="wow  bounce animated" data-wow-duration="3s" data-toggle="tooltip" data-placement="right" title="Twitter">
+                                        <a><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li style="background-color:#305891;" class="wow  bounce animated" data-wow-duration="3s" data-toggle="tooltip" data-placement="right" title="Facebook">
+                                        <a><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li style="background-color:#f8694d;" class="wow  bounce animated" data-wow-duration="3s" data-toggle="tooltip" data-placement="right" title="Google+">
+                                        <a><i class="fab fa-google-plus-g"></i></a>
+                                    </li>
+                                    <li style="background-color:#2cc5f0;" class="wow  bounce animated" data-wow-duration="3s">
+                                        <a><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li style="background-color:#305891;" class="wow  bounce animated" data-wow-duration="3s">
+                                        <a><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li style="background-color:#f8694d;" class="wow  bounce animated" data-wow-duration="3s">
+                                        <a><i class="fab fa-google-plus-g"></i></a>
+                                    </li>
+                                </ul>
+                                <div *ngFor="let newsList of newsData">
+                                    <img src="https://visacent.com/{{newsList.image}}" class="img-responsive" title="{{newsList.title}}" alt="{{newsList.slug_name}}"/>
+                                    <span style="margin: 10px 0px 5px 0px;display: block;font-size: 15px;color: #868686;width: 120px;height: 19px;overflow: hidden;">{{newsList.created_at}}</span>
+                                    <h2 class="wow slideInDown animated" data-wow-duration="3s" data-wow-delay="1s">{{newsList.title}}</h2>
+                                    <p [innerHTML]="newsList.description"></p>    
+                                    <hr />
+                                </div> 
+                            </div>
+                            <div class="leave_reply">
+                                <h3>Leatest Comments</h3>
+                                <div class="media">
+                                    <div class="media-left">
+                                      <img src="assets/images/man.png" class="media-object" style="width:60px">
+                                    </div>
+                                    <div class="media-body">
+                                      <h4 class="media-heading">Jhon D'Soeuza</h4>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reply_div">
+                                <h3 style="margin-top:15px;margin-bottom:7px;">Leave A Reply</h3>
+                                <form id="contact" class="reply_form" autocomplete="off">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="label_container">
+                                                <label>Name <i class="fas fa-pencil-alt"></i></label>
+                                            </div>
+                                            <div class="element_container">
+                                                <input type="text" name="name" [(ngModel)]='name' required class="nameBrd" (keyup)="nameRemove()"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="label_container">
+                                                <label>Email <i _ngcontent-c3="" class="far fa-envelope"></i></label>
+                                            </div>
+                                            <div class="element_container">
+                                                <input type="text" name="email" [(ngModel)]='email' class="emailBrd" required (keyup)="emailRemove()" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="label_container">
+                                                <label>Message <i class="fas fa-pencil-alt"></i></label>
+                                            </div>
+                                            <div class="element_container">
+                                                <textarea autosize name="message" [(ngModel)]='message' class="msgBrd" (keyup)="msgRemove()" required style="min-height: 130px;border: 1px solid #b5b5b5;margin-bottom:0px;
+                                                
+                                                "></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 capcha" >
+                                            <span style="display:inline-block;">
+                                                <re-captcha (resolved)="resolved($event)" siteKey="6LcPhVYUAAAAAELAie-U7clLL6AB0pZdKpO4OVwG"></re-captcha>
+                                            </span>
+                                                <div *ngIf="captchaError" style="color:red; position: relative;">*{{captchaError_msg}}</div>
+                                        </div>
+                                    </div>                                   
+                                    <div *ngIf="suce_sh" style="color:green">{{suce_msg_sh}}</div>
+                                    <div *ngIf="suce_error_sh" style="color:red">{{error_msg_sh}}</div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="bt">
+                                                <button class="my_btn" (click)='leaveReply()' style="margin-top:15px;">Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="right_main_div">
+                <h3>Realted Post</h3>
+                <div class="related_post" *ngFor="let realt of realted" (click)="realtedPost(realt.slug_name)">
+                    <a>
+                        <div class="media" >
+                            <div class="media-left">
+                              <img src="https://visacent.com/{{realt.image}}" class="media-object" title="{{realt.title}}" alt="{{realt.slug_name}}" style="width:60px">
+                            </div>
+                            <div class="media-body">
+                              <p>{{realt.title}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <hr />
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+</section>
+<div *ngIf="Error_page" style="color: red;font-size: 30px;text-align: center;top: 58px;position: relative;">{{Error_page_msg}}</div>

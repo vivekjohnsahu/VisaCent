@@ -1,0 +1,510 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+             [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'"
+             [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+<section *ngIf="pageHide" style="padding: 0px;">
+<section class="banner_sec section_20">
+  <div class="section_20" style="background: rgba(0, 94, 165, 0.7);">
+      <div class="container">
+          <div class="main_heading">
+              <h1>Embassy And Consulate of {{countryname}} </h1>
+              <span style="margin-bottom:0px;"></span>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="drop_container drop_container2">
+                      <h3>Select Country</h3>
+                      <form>
+                          <select name="change_id" (change)="changeCountry($event.target)" class="enable_white">
+                              <option style="display: none">{{countryname}}</option>
+                              <option value="australia">Austraila</option>
+                              <option value="china">China</option>
+                              <option value="canada">Canada</option>
+                              <option value="india">India</option>
+                              <option value="united-kingdom">United Kingdom</option>
+                              <option value="united-states-of-america">United States</option>
+                              <option disabled >-----------</option>
+                              <option *ngFor="let list of embassies" [value]="list.slug_country_name">{{list.name}}</option>
+                          </select>
+                         
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+  <!-- <div class="req_loader">
+        <img class="dataShow" *ngIf="dataShow" src="assets/images/loading_apple.gif">
+      </div> -->
+
+<!-- <div *ngIf="(details.is_embassy || details.is_consulate || details.is_represent) > 0"> -->
+    <div class="emb_btn_d">
+        <a class="my_btn" routerLink="/embassy-and-consulate-in/{{countryid}}">Embassies in {{countryname}}</a>
+    </div>
+<!-- </div> -->
+
+<div class="container pg_" id="page-wrapper">
+  <section style="padding:0px;">
+          <div class="row">
+              <div *ngIf="details.is_embassy > 0" class="col-md-4 col-sm-6 col-xs-6">
+                  <h2>{{countryname}} Embassies</h2>
+                  <h2 *ngIf="details.embassy['0'].length > 0"><span>A</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['0']" [hidden]="!(city.alpha=='A')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['1'].length > 0"><span>B</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['1']" [hidden]="!(city.alpha=='B')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['2'].length > 0"><span>C</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['2']" [hidden]="!(city.alpha=='C')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['3'].length > 0"><span>D</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['3']" [hidden]="!(city.alpha=='D')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['4'].length > 0"><span>E</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['4']" [hidden]="!(city.alpha=='E')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['5'].length > 0"><span>F</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['5']" [hidden]="!(city.alpha=='F')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['6'].length > 0"><span>G</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['6']" [hidden]="!(city.alpha=='G')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['7'].length > 0"><span>H</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['7']" [hidden]="!(city.alpha=='H')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['8'].length > 0"><span>I</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['8']" [hidden]="!(city.alpha=='I')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['9'].length > 0"><span>J</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['9']" [hidden]="!(city.alpha=='J')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['10'].length > 0"><span>K</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['10']" [hidden]="!(city.alpha=='K')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['11'].length > 0"><span>L</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['11']" [hidden]="!(city.alpha=='L')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['12'].length > 0"><span>M</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['12']" [hidden]="!(city.alpha=='M')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['13'].length > 0"><span>N</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['13']" [hidden]="!(city.alpha=='N')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['14'].length > 0"><span>O</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['14']" [hidden]="!(city.alpha=='O')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['15'].length > 0"><span>P</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['15']" [hidden]="!(city.alpha=='P')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['16'].length > 0"><span>Q</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['16']" [hidden]="!(city.alpha=='Q')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['17'].length > 0"><span>R</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['17']" [hidden]="!(city.alpha=='R')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['18'].length > 0"><span>S</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['18']" [hidden]="!(city.alpha=='S')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['19'].length > 0"><span>T</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['19']" [hidden]="!(city.alpha=='T')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['20'].length > 0"><span>U</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['20']" [hidden]="!(city.alpha=='U')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['21'].length > 0"><span>V</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['21']" [hidden]="!(city.alpha=='V')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['22'].length > 0"><span>W</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['22']" [hidden]="!(city.alpha=='W')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['23'].length > 0"><span>X</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['23']" [hidden]="!(city.alpha=='X')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['24'].length > 0"><span>Y</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['24']" [hidden]="!(city.alpha=='Y')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.embassy['25'].length > 0"><span>Z</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.embassy['25']" [hidden]="!(city.alpha=='Z')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+              </div>
+              <div *ngIf="details.is_consulate > 0" class="col-md-4 col-sm-6 col-xs-6 ">
+                  <h2>{{countryname}} Consulates</h2>
+                  <h2 *ngIf="details.consulate['0'].length > 0"><span>A</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['0']" [hidden]="!(city.alpha=='A')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['1'].length > 0"><span>B</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['1']" [hidden]="!(city.alpha=='B')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['2'].length > 0"><span>C</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['2']" [hidden]="!(city.alpha=='C')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['3'].length > 0"><span>D</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['3']" [hidden]="!(city.alpha=='D')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['4'].length > 0"><span>E</span></h2>
+                  <ul class="emb_in" class="emb_in" *ngFor="let city of details.consulate['4']" [hidden]="!(city.alpha=='E')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['5'].length > 0"><span>F</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['5']" [hidden]="!(city.alpha=='F')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['6'].length > 0"><span>G</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['6']" [hidden]="!(city.alpha=='G')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['7'].length > 0"><span>H</span></h2>
+                  <ul class="emb_in" class="emb_in" *ngFor="let city of details.consulate['7']" [hidden]="!(city.alpha=='H')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['8'].length > 0"><span>I</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['8']" [hidden]="!(city.alpha=='I')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['9'].length > 0"><span>J</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['9']" [hidden]="!(city.alpha=='J')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['10'].length > 0"><span>K</span></h2>
+                  <ul class="emb_in" class="emb_in" *ngFor="let city of details.consulate['10']" [hidden]="!(city.alpha=='K')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['11'].length > 0"><span>L</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['11']" [hidden]="!(city.alpha=='L')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['12'].length > 0"><span>M</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['12']" [hidden]="!(city.alpha=='M')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['13'].length > 0"><span>N</span></h2>
+                  <ul class="emb_in" class="emb_in" *ngFor="let city of details.consulate['13']" [hidden]="!(city.alpha=='N')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['14'].length > 0"><span>O</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['14']" [hidden]="!(city.alpha=='O')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['15'].length > 0"><span>P</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['15']" [hidden]="!(city.alpha=='P')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['16'].length > 0"><span>Q</span></h2>
+                  <ul class="emb_in" class="emb_in" *ngFor="let city of details.consulate['16']" [hidden]="!(city.alpha=='Q')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['17'].length > 0"><span>R</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['17']" [hidden]="!(city.alpha=='R')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['18'].length > 0"><span>S</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['18']" [hidden]="!(city.alpha=='S')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['19'].length > 0"><span>T</span></h2>
+                  <ul class="emb_in" class="emb_in" *ngFor="let city of details.consulate['19']" [hidden]="!(city.alpha=='T')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['20'].length > 0"><span>U</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['20']" [hidden]="!(city.alpha=='U')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['21'].length > 0"><span>V</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['21']" [hidden]="!(city.alpha=='V')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['22'].length > 0"><span>W</span></h2>
+                  <ul class="emb_in" class="emb_in" *ngFor="let city of details.consulate['22']" [hidden]="!(city.alpha=='W')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['23'].length > 0"><span>X</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['23']" [hidden]="!(city.alpha=='X')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['24'].length > 0"><span>Y</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['24']" [hidden]="!(city.alpha=='Y')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.consulate['25'].length > 0"><span>Z</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.consulate['25']" [hidden]="!(city.alpha=='Z')">
+                  <li><a routerLink="/consulate-general/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+              </div>
+             
+              <div *ngIf="details.is_represent > 0" class="col-md-4 col-sm-6 col-xs-6 last_col">
+                  <h2>Other {{countryname}} Representations</h2>
+                  <h2 *ngIf="details.represent['0'].length > 0"><span>A</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['0']" [hidden]="!(city.alpha=='A')">
+                  <li><a  routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['1'].length > 0"><span>B</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['1']" [hidden]="!(city.alpha=='B')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['2'].length > 0"><span>C</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['2']" [hidden]="!(city.alpha=='C')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['3'].length > 0"><span>D</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['3']" [hidden]="!(city.alpha=='D')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['4'].length > 0"><span>E</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['4']" [hidden]="!(city.alpha=='E')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['5'].length > 0"><span>F</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['5']" [hidden]="!(city.alpha=='F')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['6'].length > 0"><span>G</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['6']" [hidden]="!(city.alpha=='G')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['7'].length > 0"><span>H</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['7']" [hidden]="!(city.alpha=='H')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['8'].length > 0"><span>I</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['8']" [hidden]="!(city.alpha=='I')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['9'].length > 0"><span>J</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['9']" [hidden]="!(city.alpha=='J')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['10'].length > 0"><span>K</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['10']" [hidden]="!(city.alpha=='K')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['11'].length > 0"><span>L</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['11']" [hidden]="!(city.alpha=='L')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['12'].length > 0"><span>M</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['12']" [hidden]="!(city.alpha=='M')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['13'].length > 0"><span>N</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['13']" [hidden]="!(city.alpha=='N')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['14'].length > 0"><span>O</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['14']" [hidden]="!(city.alpha=='O')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['15'].length > 0"><span>P</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['15']" [hidden]="!(city.alpha=='P')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['16'].length > 0"><span>Q</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['16']" [hidden]="!(city.alpha=='Q')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['17'].length > 0"><span>R</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['17']" [hidden]="!(city.alpha=='R')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['18'].length > 0"><span>S</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['18']" [hidden]="!(city.alpha=='S')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['19'].length > 0"><span>T</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['19']" [hidden]="!(city.alpha=='T')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['20'].length > 0"><span>U</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['20']" [hidden]="!(city.alpha=='U')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['21'].length > 0"><span>V</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['21']" [hidden]="!(city.alpha=='V')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['22'].length > 0"><span>W</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['22']" [hidden]="!(city.alpha=='W')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['23'].length > 0"><span>X</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['23']" [hidden]="!(city.alpha=='X')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['24'].length > 0"><span>Y</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['24']" [hidden]="!(city.alpha=='Y')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+                  <h2 *ngIf="details.represent['25'].length > 0"><span>Z</span></h2>
+                  <ul class="emb_in" *ngFor="let city of details.represent['25']" [hidden]="!(city.alpha=='Z')">
+                  <li><a routerLink="/embassy/{{city.slug_name}}">{{city.name}}</a></li>
+                  </ul>
+              </div>
+          </div>
+  </section>
+</div>
+<!-- /container -->
+</section>
+<span style="display: none;" id="spn_ip"></span>
+<section *ngIf="form==0" class="section_30">
+        <div class="container datafound">
+            <div>
+                <h3 class="text-center">Sorry, we don't have any detail regarding this embassy.
+            If you have any detail, please send us!</h3>
+            </div>
+            <form class="user_emabassy" style="position:relative;"> 
+                <div class="my_alert my_alert_pos myalert" *ngIf="success_msg_error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="sus">{{success_msg}}</span>
+                </div>
+                
+                <div class="my_alert my_alert_pos my_alert_red myalert" *ngIf="msg_error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="sus">{{erro_msg}}</span>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="">
+                            <label>Name <i class="fas fa-pencil-alt"></i></label>
+                            <div id="namef" class="textarea enable_white" contenteditable (keyup)='ErrorRermoveName()'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="">
+                            <label>Address <i class="far fa-address-card"></i></label>
+                            <div id="address" class="textareaaddress enable_white" style="min-height: 124px;" contenteditable (keyup)='ErrorRermoveAdd()'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Telephone <i class="fas fa-mobile-alt"></i></label>
+                            <div id="telephone" class="textarea enable_white" contenteditable (keyup)='ErrorRermovePhn()'></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Email <i class="far fa-envelope"></i></label>
+                            <div id="email" class="textarea enable_white" contenteditable (keyup)='ErrorRermoveEml()'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Fax <i class="fas fa-fax"></i></label>
+                            <div id="fax" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Website <i class="fab fa-ioxhost"></i></label>
+                            <div id="website" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Latitude <i class="fas fa-map-marker-alt"></i></label>
+                            <div id="latitude" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Longitude <i class="fas fa-map-marker-alt"></i></label>
+                            <div id="longitude" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Landmark / near by place <i class="fas fa-location-arrow"></i></label>
+                            <div id="Landmark" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Working time <i class="far fa-clock"></i></label>
+                            <div id="WorkingTime" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="col-sm-12">
+                        <div class="">
+                            <label>
+                                Comments <i class="far fa-comment"></i> <!--(NO VISA OR PASSPORT QUESTIONS)-->
+                            </label>
+                        </div>
+                        <div class="element_container">                      
+                                <div style="min-height: 124px;" class="textarea enable_white comments" contenteditable id="comments"></div>
+                            </div>
+                    </div>
+                </div> 
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-md-12" style="text-align: center;">
+                        <div class="label_container" style="margin-bottom: 10px; display: inline-block;">
+                            <re-captcha (resolved)="resolved($event)" siteKey="6LcPhVYUAAAAAELAie-U7clLL6AB0pZdKpO4OVwG"></re-captcha>
+                            <div *ngIf="captchaError" style="color:red; position: relative; left: 0px; font-size: 14px;">*{{captchaError_msg}}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12" style="padding-right:7px;">
+                        <div class="element_container" style="text-align: center;">
+                            <button type="button" class="my_btn" (click)="update_btn()">Update</button>
+                        </div>
+                    </div>
+                </div>
+              <div *ngIf="updating" class="preloader"> 
+                <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+                    <g>
+                        <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+                        <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+                        </animateTransform>
+                    </g>
+                </svg>
+            </div> 
+            </form>
+        </div>
+      </section>
+<div *ngIf="pade_error_show">
+    <span>Data Not Found</span>
+</div>
+  

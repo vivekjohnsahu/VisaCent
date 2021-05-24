@@ -1,0 +1,76 @@
+
+.loader{
+    position: absolute;
+    top: 435px;
+    left: 600px;
+    width: 100px;
+}
+
+select{
+    cursor: pointer;
+}
+.req_select
+{
+	position: relative;
+}
+.loader_first{
+	position: absolute;
+    width: 24px;
+    right: 18px;
+    top: 9px;
+}
+.req_loader{
+    text-align: center;
+}
+
+.dataShow{
+    width: 50px;
+    text-align: center;
+    top: 15px;
+}
+.datafound{
+    position: relative;
+    /* text-align: center; */
+    font-size: 28px;
+    top: -22px;
+    
+}
+.textareaaddress {
+    display: block;
+    overflow: hidden;
+    padding: 2px 7px 4px 7px;
+    width: 100%;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid #b5b5b5;
+    background-color: white;
+}
+.textarea{
+    display: block;
+    overflow: hidden;
+    padding: 2px 7px 4px 7px;
+    width: 100%;
+    min-height: 35px;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid #b5b5b5;
+    background-color: white;
+}
+.comments{
+    display: block;
+    overflow: hidden;
+    background: #4A90E2;
+    min-height: 100px;
+    width: 100%;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid #b5b5b5;
+    background-color: white;
+}
+.borderCls{
+    border: 1px solid red;
+}
+.user_emabassy label
+{
+    color:#333!important;
+}

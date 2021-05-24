@@ -1,0 +1,8 @@
+@media (max-width:767px)
+{
+   .table_section 
+    {
+        background-color: transparent;
+        padding-bottom: 0px;
+    } 
+}

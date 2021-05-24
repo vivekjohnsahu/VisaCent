@@ -1,0 +1,42 @@
+#profile_trans
+{
+    position: absolute;
+    width: 90px;
+    left: -10px;
+}
+#profile_trans i
+{
+    font-style: normal;
+}
+@media (max-width:1200px)
+{
+    #profile_trans
+    {
+        left: -20px;
+    }
+}
+@media (max-width:600px)
+{
+    #profile_trans
+    {
+        left: -45px;
+    }
+}
+.lang_select a 
+{
+    font-size: 15px;
+}
+.lang_select a:hover 
+{
+    background-color: #f1f1f1;
+    color: #005ea5;
+}
+.show_pro
+{
+    display: block!important;
+}
+#profile_container
+{
+    display: none!important;
+}
+

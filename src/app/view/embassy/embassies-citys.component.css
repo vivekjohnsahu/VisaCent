@@ -1,0 +1,85 @@
+.my_alert
+{
+    text-align: center;
+    border: 1px solid #73d934;
+    border-radius: 0px;
+    border-radius: 33px;
+    color: #73d934;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding:4px 35px;
+    box-shadow: inset 0px 0px 20px #73d93478;
+    background-color:white;
+}
+.my_alert_red
+{
+    border: 1px solid red;
+    color: red;
+    box-shadow: inset 0px 0px 20px red;
+}
+.my_alert_pos
+{
+    position: absolute;
+    width:95%;
+    top:20px;
+    left:0px;
+    right:0px;
+    margin-left:auto;
+    margin-right:auto;
+    z-index: 5;
+}
+.datafound{
+    position: relative;
+    text-align: center;
+    font-size: 28px;
+    top: 108px;
+    color: #055da5;
+}
+.embassy_info_left a{
+    cursor: pointer;
+}
+.emb_row a{
+    cursor: pointer;
+}
+* {
+    box-sizing: border-box;
+}
+.sidebar a{
+    cursor: pointer;
+}
+
+.textareaaddress {
+    display: block;
+    overflow: hidden;
+    padding: 2px 7px 4px 7px;
+    width: 100%;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid gray;
+    background-color: white;
+}
+.textarea{
+    display: block;
+    overflow: hidden;
+    padding: 2px 7px 4px 7px;
+    width: 100%;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid gray;
+    background-color: white;
+}
+.comments{
+    display: block;
+    overflow: hidden;
+    background: #4A90E2;
+    min-height: 100px;
+    width: 100%;
+    font-size: 14px;
+    margin: 2px auto;
+    border: 1px solid gray;
+    background-color: white;
+}
+.borderCls{
+    border: 1px solid red;
+}
+

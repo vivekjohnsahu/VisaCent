@@ -1,0 +1,157 @@
+@media (min-width:400px)
+{
+   .v_price,.s_fee
+    {
+        float:left
+    } 
+}
+
+.btn_right_error{
+    color: red;
+    position: relative;
+    right: 239px;
+    top: 30px;
+}
+.disabledbutton {
+    pointer-events: none;
+    background: #ebebe5;
+    border: 1px solid #bdbdbd;
+}
+.disabledbutton label {
+    opacity: .75;
+}
+.chek_alert{
+    position: absolute;
+    left: 566px;
+    top: 21px;
+    color: green
+}
+.borderColor{
+    border: 1px solid red;
+}
+
+.btn_next{
+    background-color: red;
+    border: red;
+   
+}
+.req_select
+{
+	position: relative;
+}
+.loader_first{
+	position: absolute;
+    width: 24px;
+    right: 18px;
+    top: 9px;
+}
+.test_article
+{
+    width:100%;
+    display: flex;
+    /* margin-bottom: 15px; */
+}
+.test_article>div
+{
+    flex-basis: 33.33%;
+}
+.info_alert
+{
+    width: 73%;
+    z-index: 5;
+    font-size: 23px;
+    text-align: center;
+    background-color: #edeef1;
+    border-color: #7b7b7b00;
+    color: #055ea5;
+    border-radius: 0px;
+    /* border-bottom: 3px solid #005ea5; */
+    box-shadow: 0px 15px 39px -25px rgba(0, 0, 0, 0.69);
+    font-family: 'Hammersmith One';
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.info_alert .close
+{
+    position: absolute;
+    opacity: 1;
+    background: #e4521a;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: white;
+    right: -12px;
+    top: -11px;
+    font-weight: normal;
+    transition-duration: .2s;
+}
+.info_alert .close:hover
+{
+    transform:scale(1.2,1.2);
+    transition-duration: .2s;
+}
+@media (max-width:1400px){
+    .mediaCls {
+        width: 180%;
+        right: 38%;
+    }
+}
+@media (max-width: 1200px) {
+    .mediaCls {
+        width: 142%;
+        right: 21%;
+    }
+}
+@media (max-width: 900px) {
+    .mediaCls {
+        width: 112%;
+        right: 7%;
+    }
+}
+@media (max-width: 768px) {
+    .mediaCls {
+        width: 94%;
+        right: -3%;
+    }
+}
+@media (min-width: 1200px)
+{
+    .faq_div {
+        padding: 0px 45px;
+    }
+}
+@media (min-width: 1600px)
+{
+    .faq_div {
+        padding: 0px 15px;
+    }
+}
+.phone_dropdown
+{
+    position: relative;
+}
+.phone_dropdown select
+{
+    position: absolute;
+    width:64px;top:0px;left:0px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.phone_dropdown input[type="number"]
+{
+    padding-left:40px;
+}
+
+.four
+{
+    background-color:transparent!important
+}
+
+.forgot
+{
+    float: right;
+    font-size: 16px;
+    font-family: 'Hammersmith One';
+    margin-top: 6px;
+}

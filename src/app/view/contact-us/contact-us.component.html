@@ -1,0 +1,126 @@
+<section class="cont_sec section_20">
+	<div class="container">
+    	<div class="text-center">
+            <div class="main_heading main_heading_wbg">
+                <h1 class="table_h">Contact Us</h1>
+                <span></span>
+            </div>
+            <p>You can find out how to contact us and where to send your visa application. You can also ask us a question on our online query form.</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="section_20 contact_sec" style="padding-top: 0px;">
+	<div class="container">
+		<div class="row">
+            <div class="col-lg-4 col-md-4 col-lg-push-7 col-md-push-8">
+                <div class="contact_side">
+                    <ul>
+                        <li class="active_content">Request a callback</li>
+                        <li><span>Report an offence</span></li>
+                        <li><span>Find immigration advice</span></li>
+                    </ul>
+<!--
+                    <h3 id="RequestValue" (click)="type1()" ><span class="active_content">Request a callback</span></h3>
+                    <h3 id="ReportValue" (click)="type2()"><span>Report an offence</span></h3>
+                    <h3 id="FindValue" (click)="type3()"><span>Find immigration advice</span></h3>
+-->
+                </div>
+			</div>
+			<div class="col-lg-6 col-md-8 col-lg-pull-4 col-md-pull-4 col-lg-offset-1">
+				<div class="left_contact" style="position: relative;">
+                    
+                    <div id="myalert" class="my_alert my_alert_pos" *ngIf="chek_msg">
+                        <button type="button" class="close" data-dismiss="myalert">&times;</button>
+                        <span class="sus">successfully</span>
+                    </div>
+                    <div id="myalert" class="my_alert my_alert_pos my_alert_red" *ngIf="chek_msg_error">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <span class="sus">Error</span>
+                    </div>
+                    
+					<h3 id="contact_head_dy" style="margin-top:0px;">Request a callback</h3>
+					<form class="contact">
+						<div class="row">
+							<div class="col-sm-6">
+                                <div class="label_container">
+                                    <label id="lbl_name">Name <i class="fas fa-pencil-alt"></i></label>
+                                </div>
+								<div class="element_container">
+                                    <input class="nameOne" type="text" maxlength="40" name="firstname" [(ngModel)]="contactU.name" required [ngClass]="{'borderColor': firstname.invalid && ( firstname.dirty || firstname.touched)}" #firstname="ngModel" (keyup)="cleanName()" />
+                                </div>
+							</div>
+							<div class="col-sm-6">
+                                <div class="label_container">
+                                    <label id="lbl_email">Email <i class="far fa-envelope"></i></label>
+                                </div>
+								<div class="label_container">
+                                    <input class="emailOne" type="text" maxlength="40" name="Email" [(ngModel)]="contactU.email" required [ngClass]="{'borderColor': Email.invalid && ( Email.dirty || Email.touched)}" #Email="ngModel" (keyup)="cleanGmail()" pattern="^([a-zA-Z0-9_.]+@[a-zA-Z0-9]+[.][.a-zA-Z]+)$"/>
+                                </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+                                <div class="label_container">
+                                    <label id="lbl_number">Phone <i class="fas fa-mobile-alt"></i></label>
+                                </div>
+								<div class="element_container phone_dropdown" id="">
+									<select name="" id="flagVle" class="flagEr enable_white">
+										<option *ngFor="let flag of flagDrop" [selected]="codeCnt==flag.value" value="{{flag.value}}">{{flag.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{flag.country}}</option>
+									</select>
+									<input class="numberOne" id="number" type="number" #number="ngModel" pattern="^(0|[1-9][0-9]*)$" name="number" [(ngModel)]="contactU.phone" minlength="6" maxlength="15" required (keypress)="isNumberKey($event)" />
+								</div>
+							</div>
+                            <div class="col-sm-6">
+                                <div class="label_container">
+                                    <label>Nationality <i class="fas fa-globe"></i></label>
+                                </div>
+								<div class="element_container">
+                                    <select (change)="nationality($event.target)" id="id_City" class="enable_white">
+                                        <option value="28">Austraila</option>
+                                        <option value="72">China</option>
+                                        <option value="29">Canada</option>
+                                        <option value="30">India</option>
+                                        <option value="31">United Kingdom</option>
+                                        <option value="32">United States</option>
+                                        <option disabled >-----------</option>
+                                        <option *ngFor="let list of nationality_list" [value]='list.id'>{{list.name}}</option>
+                                    </select>
+                                </div>
+								
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+                                <div class="label_container">
+                                    <label>Message <i class="fas fa-pencil-alt"></i></label>
+                                </div>
+								<div class="element_container">
+                                    <textarea name="massage" [(ngModel)]="contactU.mag" autosize style="min-height: 130px;border: 1px solid #b5b5b5;"></textarea>
+                                </div>
+							</div>
+						</div>
+                        <div class="row">
+                            <div class="col-sm-12 " style="text-align: center;">
+                                <span style="display: inline-block;">
+                                <re-captcha (resolved)="resolved($event)" siteKey="6LcPhVYUAAAAAELAie-U7clLL6AB0pZdKpO4OVwG"></re-captcha></span>
+								<div *ngIf="captchaError" style="color:red; position: relative; left: 94px;">*{{captchaError_msg}}</div>
+							</div>
+                        </div>
+						<div class="row">
+							<div class="col-sm-12 text-center" >
+								<button type="button" (click)="contactData()" class="my_btn " style="color:white;width:164px;display: inline-block;margin-top: 20px;">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+            
+		</div>
+	</div>
+</section>
+
+
+
+

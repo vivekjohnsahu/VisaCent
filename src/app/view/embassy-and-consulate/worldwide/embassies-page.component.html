@@ -1,0 +1,362 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+             [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'"
+             [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+<section [hidden]="!pageHide" style="padding: 0px;">
+<section class="banner_sec">
+        <div class="section_20" style="background: rgba(0, 94, 165, 0.7);">
+            <div class="container">
+                <div class="main_heading">
+                    <h1>Embassy And Consulate</h1>
+                    <span style="margin-bottom:30px;"></span>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="drop_container drop_container1 embassy_of">
+                            <h3>Embassy of</h3>
+                            <form>
+                                <!-- <div class="req_select">
+                                    <img *ngIf="loaderShow_first" class="loader_first" src="assets/images/loading_apple.gif"> -->
+                                <select name="shape_id" (change)="changeShapeOne($event.target)" class="enable_white">
+                                    <option style="display: none;">Choose Country</option>
+                                    <option *ngFor="let list of topCntryOne" [value]="list.slug_country_name">{{list.name}}</option>
+                                    <option disabled >-----------</option>
+                                    <option *ngFor="let list of countryOne" [value]="list.slug_country_name">{{list.name}}</option>      
+                                </select>
+                                <!-- </div> -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="drop_container embassy_of">
+                            <h3>In</h3>
+                            <form>
+                                <!-- <div class="req_select">
+                                    <img *ngIf="loaderShow_second" class="loader_first" src="assets/images/loading_apple.gif"> -->
+                                <select name="shape_id" (change)="changeShapeTwo($event.target)" class="enable_white">
+                                    <option style="display: none;">Choose Country</option>
+                                    <option *ngFor="let list of topCntryTwo" [value]="list.slug_country_name">{{list.name}}</option>
+                                    <option disabled >-----------</option>
+                                    <option *ngFor="let list of countryTwo" [value]="list.slug_country_name" >{{list.name}}</option>
+                                </select>
+                                <!-- </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+    <!--------------------end banner ----------------------------> 
+    <section class="link_sec section_20">
+        <div class="container">
+            <h2 class="text-center">Get information of Embassy and consulate worldwide</h2>
+            <p class="p_1">Our aim is to provide a comprehensive directory that makes your searching of embassies and consulates around the world easy and accurate with all the information of embassy and consulate addresses, contact numbers, fax numbers, email addresses, working hours, etc.
+                <br />
+            Here you can find the most reliable list of embassies and consulates around the world.
+                <br />
+            Please select a country below:
+            </p>
+            <h3 style="text-align: center;">For embassy information select the destination country below</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="link_container" >
+                        <li><a a class="filter" id="a">A</a></li>
+                        <li><a a class="filter" id="b">B</a></li>
+                        <li><a a class="filter" id="c">C</a></li>
+                        <li><a a class="filter" id="d">D</a></li>
+                        <li><a a class="filter" id="e">E</a></li>
+                        <li><a a class="filter" id="f">F</a></li>
+                        <li><a a class="filter" id="g">G</a></li>
+                        <li><a a class="filter" id="h">H</a></li>
+                        <li><a a class="filter" id="i">I</a></li>
+                        <li><a a class="filter" id="j">J</a></li>
+                        <li><a a class="filter" id="k">K</a></li>
+                        <li><a a class="filter" id="l">L</a></li>
+                        <li><a a class="filter" id="m">M</a></li>
+                        <li><a a class="filter" id="n">N</a></li>
+                        <li><a a class="filter" id="o">O</a></li>
+                        <li><a a class="filter" id="p">P</a></li>
+                        <li><a a class="filter" id="q">Q</a></li>
+                        <li><a a class="filter" id="r">R</a></li>
+                        <li><a a class="filter" id="s">S</a></li>
+                        <li><a a class="filter" id="t">T</a></li>
+                        <li><a a class="filter" id="u">U</a></li>
+                        <li><a a class="filter" id="v">V</a></li>
+                        <!-- <li><a a class="filter" id="w">W</a></li>
+                        <li><a a class="filter" id="y">X</a></li> -->
+                        <li><a a class="filter" id="y">Y</a></li>
+                        <li><a a class="filter" id="z">Z</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div *ngIf="loaderHide" class="container pg_" id="page-wrapper">
+            <div class="embassy_cont embassy_list" style="padding: 30px;">
+                <div class="row dark-row" id="link_a">
+                    <div class="col-md-12 ">
+                        <article>
+                            <h2><span>A</span></h2>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['0']" [hidden]="!(list.alpha=='A')">
+                    <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+                </div>
+            </div>
+            <div class="row dark-row" id="link_b">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>B</span></h2>
+                    </article>
+                </div>
+            
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['1']" [hidden]="!(list.alpha=='B')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_c">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>C</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['2']" [hidden]="!(list.alpha=='C')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_d">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>D</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['3']" [hidden]="!(list.alpha=='D')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_e">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>E</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['4']" [hidden]="!(list.alpha=='E')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_f">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>F</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['5']" [hidden]="!(list.alpha=='F')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_g">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>G</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['6']" [hidden]="!(list.alpha=='G')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_h">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>H</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['7']" [hidden]="!(list.alpha=='H')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_i">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>I</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['8']" [hidden]="!(list.alpha=='I')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_j">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>J</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['9']" [hidden]="!(list.alpha=='J')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_k">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>K</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['10']" [hidden]="!(list.alpha=='K')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_l">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>L</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['11']" [hidden]="!(list.alpha=='L')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_m">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>M</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['12']" [hidden]="!(list.alpha=='M')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_n">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>N</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['13']" [hidden]="!(list.alpha=='N')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_o">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>O</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['14']" [hidden]="!(list.alpha=='O')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_p">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>P</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['15']" [hidden]="!(list.alpha=='P')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_q">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>Q</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['16']" [hidden]="!(list.alpha=='Q')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_r">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>R</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['17']" [hidden]="!(list.alpha=='R')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_s">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>S</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['18']" [hidden]="!(list.alpha=='S')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_t">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>T</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['19']" [hidden]="!(list.alpha=='T')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_u">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>U</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['20']" [hidden]="!(list.alpha=='U')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        <div class="row dark-row" id="link_v">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>V</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['21']" [hidden]="!(list.alpha=='V')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+            <!-- <div class="row dark-row" id="link_w">
+                    <div class="col-md-12">
+                        <article>
+                            <h2><span>W</span></h2>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical" [hidden]="!(list.alpha=='W')">
+                    <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+                </div>
+            </div>
+            <div class="row dark-row" id="link_w">
+                    <div class="col-md-12">
+                        <article>
+                            <h2><span>x</span></h2>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['21']" [hidden]="!(list.alpha=='x')">
+                    <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+                </div>
+            </div> -->
+            <div class="row dark-row" id="link_y">
+                    <div class="col-md-12">
+                        <article>
+                            <h2><span>Y</span></h2>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['24']" [hidden]="!(list.alpha=='Y')">
+                    <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+                </div>
+            </div>
+        <div class="row dark-row" id="link_z">
+                <div class="col-md-12">
+                    <article>
+                        <h2><span>Z</span></h2>
+                    </article>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let list of alphabetical['25']" [hidden]="!(list.alpha=='Z')">
+                <a routerLink="/embassy-and-consulate-in/{{list.slug_country_name}}">{{list.name}}</a>
+            </div>
+        </div>
+        
+        </div>
+        </div>
+    </section>

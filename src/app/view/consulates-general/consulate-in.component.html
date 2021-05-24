@@ -1,0 +1,210 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+             [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'"
+             [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+<!-- <div *ngIf="pade_error_show" class="datafound">Oops! The Page you requested was not found!</div> -->
+<div *ngIf="pageHide" style="padding: 0px;">
+    <section class="section_20" style="background-color: #EDEFF1;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main_heading main_heading_wbg text-center">
+                    <h1 class="heading_in">{{of_name}} Consulates General in {{in_name}}</h1>
+                    <div class="hr_line"></div>
+                    <p class="discription">{{of_name}} Embassy office in {{in_name}} is an office of communication between {{of_name}} Government and {{in_name}}.
+                        It operates as the official representative of the {{of_name}} in {{in_name}}. The following is major information about {{of_name}} Embassy for {{in_name}} :
+                    </p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <div class="my1">
+    <section class="section_20" *ngFor="let details of multidateils">
+        <div id="embassy_flex_cont">
+            <div>
+                <article class="embassy_info_left" >
+                    <div class="info_div">
+                        <div class="city_name">
+                            <h3><a routerLink="/consulate-general/{{details.slug_name}}">{{details.name}}</a></h3>
+                        </div>
+                        <h3><span>Address: </span></h3>
+                        <p [innerHTML]="details.Address">
+                        </p>
+                        <p>
+                            <strong>Phone: </strong>
+                            <span *ngIf="details.lnthTelepone!=0">
+                                <a href="tel:+{{portOne}}" *ngFor="let portOne of details.phoneM1"><span [innerHTML]="portOne"></span></a> 
+                            </span>
+                            <span *ngIf="details.lnthTelepone==0">
+                                <span>NA</span>
+                            </span>	
+                            <br><strong>Fax: </strong>
+                            <span *ngIf="details.lnthFax!=0">
+                                <a  href="{{portOne}}" target="_blank" *ngFor="let portOne of details.faxMultiM1"><span [innerHTML]="portOne"></span></a> 
+                            </span>
+                            <span *ngIf="details.lnthFax==0">
+                                <span>NA</span>
+                            </span>
+                        </p>
+                        <p>
+                            <strong>Email: </strong>
+                            <span *ngIf="details.lnthE_maiil!=0">
+                                <a href="mailto:{{portOne}}" *ngFor="let portOne of details.emaiM1"  ><span [innerHTML]="portOne"></span><br></a>
+                            </span>
+                            <span *ngIf="details.lnthE_maiil==0">
+                                <span>NA</span>
+                            </span>
+                            <br><strong>Website: </strong>
+                            <span *ngIf="details.lnthWebsite!=0">
+                                <a href="{{portOne}}" target="_blank" *ngFor="let portOne of details.websiteM1"><span [innerHTML]="portOne"></span></a>
+                            </span>
+                            <span *ngIf="details.lnthWebsite==0">
+                                <span>NA</span>
+                            </span>
+                            </p>
+                    </div>
+                </article>
+            </div>
+            <div class="emb_location_div">
+                <div class="map">
+                    <iframe width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.it/maps?key=AIzaSyDhk_FjlzJ5Gn6JqJ9np-Z0XY-WBwDoogU&q=5%2C+Liang+Ma+Qiao+Bei+Jie+Chaoyang+District+Beijing+China&output=embed"></iframe>
+                </div>
+            </div>     
+        </div>
+    </section>
+</div>
+<section class="section_20">
+    <div class="container">
+        <div *ngIf="multidateils.length > 0">
+            <a routerLink="/embassies/{{ofCountrySlugName}}-in-{{inCountrySlugName}}" class="next_btn my_btn">
+                {{of_name}} Embassies in {{in_name}}
+            </a>
+        </div>
+    </div>
+</section>
+</div>
+<span style="display: none;" id="spn_ip"></span>
+<section *ngIf="pade_error_show" class="section_30">
+        <div class="container datafound" style="position: relative;top: 15px;margin-bottom: 51px;">
+            <h2 *ngIf="success_msg_error" style="color:green; text-align: center;">{{success_msg}}</h2>
+            <h3 *ngIf="msg_error" style="color:red;text-align: center;">{{erro_msg}}</h3>
+            <div>
+                <h3 class="text-center">Sorry, we don't have any detail regarding this embassy. If you have any detail, please send us.
+                </h3>
+            </div>
+            <form class="user_emabassy">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="">
+                            <label>Name <i class="fas fa-pencil-alt"></i></label>
+                            <div id="namef" class="textarea enable_white" contenteditable (keyup)='ErrorRermoveName()'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="">
+                            <label>Address <i class="far fa-address-card"></i></label>
+                            <div id="address" class="textareaaddress enable_white" style="min-height: 124px;" contenteditable (keyup)='ErrorRermoveAdd()'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class=" text_left">
+                            <label>Telephone <i class="fas fa-mobile-alt"></i></label>
+                            <div id="telephone" class="textarea enable_white" contenteditable (keyup)='ErrorRermovePhn()'></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class=" text_left">
+                            <label>Email <i class="far fa-envelope"></i></label>
+                            <div id="email" class="textarea enable_white" contenteditable (keyup)='ErrorRermoveEml()'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class=" text_left">
+                            <label>Fax <i class="fas fa-fax"></i></label>
+                            <div id="fax" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class=" text_left">
+                            <label>Website <i class="fab fa-ioxhost"></i></label>
+                            <div id="website" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class=" text_left">
+                            <label>Latitude <i class="fas fa-map-marker-alt"></i></label>
+                            <div id="latitude" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class=" text_left">
+                            <label>Longitude <i class="fas fa-map-marker-alt"></i></label>
+                            <div id="longitude" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Landmark / near by place <i class="fas fa-location-arrow"></i></label>
+                            <div id="Landmark" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text_left">
+                            <label>Working time <i class="far fa-clock"></i></label>
+                            <div id="WorkingTime" class="textarea enable_white" contenteditable></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="">
+                            <label>
+                                Comments <i class="far fa-comment"></i>
+                                <!--(NO VISA OR PASSPORT QUESTIONS)-->
+                            </label>
+                        </div>
+                        <div class="element_container" style="text-align: left!important;">
+                            <div style="min-height: 124px;" class="textarea enable_white comments" contenteditable id="comments"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-md-12" style="text-align: center;">
+                        <div class="label_container" style="margin-bottom: 10px; display: inline-block;">
+                            <re-captcha (resolved)="resolved($event)" siteKey="6LcPhVYUAAAAAELAie-U7clLL6AB0pZdKpO4OVwG"></re-captcha>
+                            <div *ngIf="captchaError" style="color:red; position: relative; left: 0px; font-size: 14px;">*{{captchaError_msg}}</div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12" style="padding-right:7px;">
+                        <div class="element_container" style="text-align: center;">
+                            <button type="button" class="my_btn" (click)="update_btn()">Update</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="updating" class="preloader"> 
+                    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve">
+                        <g>
+                            <path d="M78.75 16.18V1.56a64.1 64.1 0 0 1 47.7 47.7H111.8a49.98 49.98 0 0 0-33.07-33.08zM16.43 49.25H1.8a64.1 64.1 0 0 1 47.7-47.7V16.2a49.98 49.98 0 0 0-33.07 33.07zm33.07 62.32v14.62A64.1 64.1 0 0 1 1.8 78.5h14.63a49.98 49.98 0 0 0 33.07 33.07zm62.32-33.07h14.62a64.1 64.1 0 0 1-47.7 47.7v-14.63a49.98 49.98 0 0 0 33.08-33.07z" fill="#005ea5" fill-opacity="1"/>
+                            <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="1800ms" repeatCount="indefinite">
+                            </animateTransform>
+                        </g>
+                    </svg>
+                </div>
+            </form>
+        </div>
+    </section>

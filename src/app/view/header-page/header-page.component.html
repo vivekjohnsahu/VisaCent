@@ -1,0 +1,89 @@
+<header>
+    <div class="top_nav">
+        <div class="container">
+            <div class="navbar-left">
+                <h1 style="margin:0px;"><a routerLink="" title="Home"><img src="assets/images/visacentlogo.png" class="img-responsive logo"/></a></h1>
+            </div>
+            <div class="navbar-right">
+                <ul class="top_link">
+                    <!-- <li><a><i class="fas fa-credit-card"></i> <span>Make Payment</span></a></li> -->
+                    <li><a class="social-button facebook" routerLink="visa-status" title="Visa Status"><i class="fas fa-tasks"></i> <span style="margin-left: 5px;">Visa Status</span></a> </li>
+                    <li id="login_li">
+                        <a class="social-button google" routerLink="login" title="Login">
+                            <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                            <span style="margin-left: 5px;">Login</span>
+                        </a>
+                    </li>
+                    <li style="position: relative;display: none;" id="accnt_li">
+                        <a id="profile" class="social-button google" title="Profile">
+                            <i class="fa fa-user" aria-hidden="true"></i> <span style="margin-left: 5px;">{{userName}}</span></a>
+                        <div id="profile_trans" class="lang_select">
+                            <a id="" routerLink="my-profile" class="social-button" title="My Profile">
+                                <i>My Profile</i>
+                            </a>
+                            <a (click)="logOut()" id="" class="social-button" title="Log Out" style="padding-top:0px;">
+                                <i>Log Out</i>
+                            </a>
+                        </div>
+                    </li>
+                    {{this.userLocal()}}
+                    <!-- <li class="lang">
+                        <a id="language" class="social-button" title="Language">
+                            <img src="assets/images/us.png" style="width:30px;" /> <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
+                        </a>
+                        <div id="trans" class="lang_select">
+                            <a id="" class="social-button" title="China">
+                                <img src="assets/images/china.png" style="width:30px;" />
+                            </a>
+                            <a id="" class="social-button" title="India">
+                                <img src="assets/images/india.png" style="width:30px;" />
+                            </a>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="background-color:#005ea5;" class="toggle_bar">
+    <div class="container">
+        <nav class="navbar" style="margin-bottom:0px;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle toggle_btn collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                <ul class="nav navbar-nav nav_ul">
+                    <li><a routerLink="" class="act menu_active" title="Home">Home</a></li>
+                    <li class="dropdown">
+                        <a routerLink="apply-e-visa" title="Apply e-Visa">Apply e-Visa</a>
+                    </li>
+                    <li class="dropdown">
+                        <a routerLink="embassy-and-consulate/worldwide" title="Embassy">Embassy</a>
+                    </li>
+                    <li><a routerLink="news" title="News">News</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="container">
+    <button type="button" class="btn btn-info btn-lg hidden" id="modal_btn" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="position: relative;top: 150px;">
+                <div class="modal-body">
+                    <p style="text-align: center;color:green;"><i class="fa fa-check" style="color:green;" aria-hidden="true"></i> You have logout successfully</p>
+                </div>
+                <div class="modal-footer" style="text-align: center;display:none;">
+                    <button type="button" class="btn btn-success" id="modal_btn_cancel" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

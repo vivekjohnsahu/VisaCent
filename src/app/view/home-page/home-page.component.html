@@ -1,0 +1,263 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1" [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'" [color]="'#055ea5'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"></ng-progress>
+<section class="banner_sec banner_20">
+    <div class="banner_div section_30">
+        <div class="container">
+            <div class="main_heading">
+                <h1>Apply for <span style="text-transform: lowercase;">a</span> Visa</h1>
+                <span></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="drop_container drop_container1">
+                        <img src="assets/images/arrow.png" />
+                        <div><span><i class="fas fa-flag"></i></span></div>
+                        <h3>My Passport Country</h3>
+                        <form>
+                            <select name="shape_id" (change)="changeShapeOne($event.target)" class="enable_white">
+                                <option disabled>Choose Country</option>
+                                <option *ngFor="let list of topCntryOne" [value]="list.slug_country_name">{{list.name}}</option>
+                                <option disabled>-----------</option>
+                                <option *ngFor="let list of countryOne" [value]="list.slug_country_name">{{list.name}}</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="drop_container">
+                      <div><span><i class="fa fa-globe" aria-hidden="true"></i></span></div>
+                        <h3>Need Visa For</h3>
+                       <form>
+                           <select name="shape_id" (change)="changeShapeTwo($event.target)" class="enable_white">
+                                <option disabled>Choose Country</option>
+                                <option *ngFor="let list of topCntryTwo" [value]="list.slug_country_name">{{list.name}}</option>
+                                <option disabled>-----------</option>
+                                <option *ngFor="let list of countryTwo" [value]="list.slug_country_name">{{list.name}}</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section_20" id="scrollTable">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="visa-sec">
+                    <h2 style="margin-bottom: 15px;">Most Sought Visas</h2>
+                    <div class="row flag_home">
+                        <div class="col-lg-3 col-md-4 col-sm-6" (click)="getCntyName('india')">
+                            <article class="visa_country">
+                                <a title="Indian Visa">
+                                    <aside>
+                                        <i class="india"></i>
+                                    </aside>
+                                    <h3>Indian Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6" (click)="getCntyName('vietnam')">
+                            <article class="visa_country" title="Vietnamese Visa">
+                                <a target="_blank">
+                                    <aside>
+                                        <i class="vietnam"></i>
+                                    </aside>
+                                    <h3>Vietnamese Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6" (click)="getCntyName('myanmar')">
+                            <article class="visa_country">
+                                <a title="Myanmar Visa">
+                                    <aside>
+                                        <i class="myanmar"></i>
+                                    </aside>
+                                    <h3>Myanmar Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 " (click)="getCntyName('turkey')">
+                            <article class="visa_country">
+                                <a href="javascript:void(0);" title="Turkish Visa">
+                                    <aside>
+                                        <i class="turky"></i>
+                                    </aside>
+                                    <h3>Turkish Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6" (click)="getCntyName('malaysia')">
+                            <article class="visa_country">
+                                <a href="javascript:void(0);" title="Malaysia Visa">
+                                    <aside>
+                                        <i class="malaysia"></i>
+                                    </aside>
+                                    <h3>Malaysia Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6" (click)="getCntyName('australia')">
+                            <article class="visa_country">
+                                <a href="javascript:void(0);" title="Australian Visa">
+                                    <aside>
+                                        <i class="australia"></i>
+                                    </aside>
+                                    <h3>Australian Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6" (click)="getCntyName('sri-lanka')">
+                            <article class="visa_country">
+                                <a href="javascript:void(0);" title="Australian Visa">
+                                    <aside>
+                                        <i class="srilanka"></i>
+                                    </aside>
+                                    <h3>Sri Lanka Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6" (click)="getCntyName('taiwan')">
+                            <article class="visa_country">
+                                <a href="javascript:void(0);" title="Australian Visa">
+                                    <aside>
+                                        <i class="taiwan"></i>
+                                    </aside>
+                                    <h3>Taiwan Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-lg-offset-1 ukrain_flag" (click)="getCntyName('ukraine')">
+                            <article class="visa_country">
+                                <a href="javascript:void(0);" title="Australian Visa">
+                                    <aside>
+                                        <i class="ukraine"></i>
+                                    </aside>
+                                    <h3>Ukraine Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-lg-offset-0 col-md-offset-2" (click)="getCntyName('ethiopia')">
+                            <article class="visa_country">
+                                <a href="javascript:void(0);" title="Australian Visa">
+                                    <aside>
+                                        <i class="ethiopia"></i>
+                                    </aside>
+
+                                    <h3>Ethiopia Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-sm-offset-3 col-md-offset-0" (click)="getCntyName('singapore')">
+                            <article class="visa_country">
+                                <a href="javascript:void(0);" title="Singapore Visa">
+                                    <aside>
+                                        <i class="singapore"></i>
+                                    </aside>
+
+                                    <h3>Singapore Visa</h3>
+                                </a>
+                            </article>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section style="background-color: #EDEFF1;" class="step_sec section_30">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center visa-apply-headding">
+                <h2>Get your Visa in 3 simple steps</h2>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                <div class="visa-step-sec">
+                    <h2><span>1</span> <span> Step</span></h2>
+                    <div><span><i class="fas fa-mobile-alt"></i></span></div>
+                    <p>Fill and Submit Online Application</p>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                <div class="visa-step-sec">
+                    <h2><span>2</span> <span> Step</span></h2>
+                    <div><span><i class="fas fa-credit-card"></i></span></div>
+                    <p>Make payment</p>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                <div class="visa-step-sec">
+                    <h2><span>3</span> <span> Step</span></h2>
+                    <div><span><i class="far fa-envelope-open"></i></span></div>
+                    <p>Receive Visa on eMail</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section_20">
+    <div class="container">
+        <div class="row why_row">
+            <h2 style="color:#005ea5;" class="text-center">VisaCent is here</h2>
+            <div class="col-md-3 col-sm-6">
+                <article class="why_visa">
+                    <div class="icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Innovative</h3>
+                    <p>VisaCent commits to deliver open information on visa requirements for all the countries. The technical advancement represents the our mission to foster industry innovation.</p>
+                </article>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <article class="why_visa">
+                    <div class="icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Simple</h3>
+                    <p>Our unique online tool, which is one stop for processing all your visas needs.</p>
+                </article>
+            </div>
+            <div class="col-md-3 hidden-sm hidden-xs">
+                <article class="why_visa w_visa">
+                    <div class="icon"><i class="fas fa-lock"></i></div>
+                    <h3>Secure</h3>
+                    <p>
+                        We take care Premium Validation, SSL Certificate which provides secure environment and online assurance.</p>
+                </article>
+            </div>
+            <div class="col-md-3 hidden-sm hidden-xs">
+                <article class="why_visa w_visa">
+                    <div class="icon"><i class="fas fa-check"></i></div>
+                    <h3>accessible</h3>
+                    <p>The website is supported on every browser and device so you can access the website without any hassle.</p>
+                </article>
+            </div>
+        </div>
+        <div class="row why_row feature_hidden">
+            <div class="col-sm-6">
+                <article class="why_visa w_visa">
+                    <div class="icon"><i class="fas fa-lock"></i></div>
+                    <h3>Secure</h3>
+                    <p>
+                        We take care Premium Validation, SSL Certificate which provides secure environment and online assurance.</p>
+                </article>
+            </div>
+            <div class="col-sm-6">
+                <article class="why_visa w_visa">
+                    <div class="icon"><i class="fas fa-check"></i></div>
+                    <h3>accessible</h3>
+                    <p>The website is supported on every browser and device so you can access the website without any hassle.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section_20" style="background-color: #666666;">
+    <div class="container">
+        <p class="head_para">VisaCent visa requirement tool available to over 4.1 billion people in 190 countries.</p>
+    </div>
+</section>
